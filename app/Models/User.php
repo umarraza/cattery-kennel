@@ -14,8 +14,8 @@ class User extends Authenticatable
     const CREATED_AT       =   'createdAt';
     const UPDATED_AT       =   'updatedAt';
     const SUPER_ADMIN      =   'super_admin';
-    const STUDENT          =   'student';    
-    const HOSTEL_ADMIN     =   'hostel_admin';    
+    const SUPLLIER         =   'Supplier';    
+    const CUSTOMER         =   'Customer';    
     
     use Notifiable;
 
@@ -33,8 +33,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
-        'password',
         'email',
+        'password',
         'roleId',
         'resetPasswordToken',
         'createdResetPToken',
@@ -84,21 +84,21 @@ class User extends Authenticatable
         return false;
     }
 
-    public function Hostel()
+    public function Supplier()
     {
-        return $this->hasOne(Hostel::class,'userId','id');
+        return $this->hasOne(Supllier::class,'userId','id');
     }
 
-    public function isHostelAdmin(){
+    public function isSupplier(){
         
-        if ($this->role->label == self::HOSTEL_ADMIN)
+        if ($this->role->label == self::SUPLLIER)
             return true;
                 return false;
     }
 
 
-    public function isStudent(){
-        if ($this->role->label == self::STUDENT){
+    public function isCustomer(){
+        if ($this->role->label == self::CUSTOMER){
             return true;
                 return flase;
         }
@@ -117,10 +117,10 @@ class User extends Authenticatable
         if ($this->isSuperAdmin() )
             return true;
         
-        elseif ($this->isHostelAdmin() )
+        elseif ($this->isSupplier() )
             return true;
   
-        elseif ($this->isStudent() )
+        elseif ($this->isCustomer() )
             return true;
                 return false;
     }
@@ -162,7 +162,7 @@ class User extends Authenticatable
 
     public function getFullNameAttribute() {
 
-        if ($this->isHostelAdmin() && !empty($this->Hostel))
+        if ($this->isSupllier() && !empty($this->Hostel))
 
         return $this->Hostel->hostelName;
         
