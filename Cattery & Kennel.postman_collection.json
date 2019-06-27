@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "041f7442-e17c-4277-8585-22a3e3a4f0b1",
+		"name": "Cattery & Kennel",
+		"description": "The main idea of this system is to build an online platform to provide catteries and kennels\r\na place where they can list their business and reach out to more customers. ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "super.admin@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "umarraza",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.13/cattery&kennels/api/login",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"13"
+					],
+					"path": [
+						"cattery&kennels",
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Supplier",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "umarraza",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "roleId",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "umarraza2200@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.13/cattery-kennel/api/signup",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"13"
+					],
+					"path": [
+						"cattery-kennel",
+						"api",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
