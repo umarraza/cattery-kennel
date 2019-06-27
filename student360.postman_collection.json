@@ -1,0 +1,807 @@
+{
+	"info": {
+		"_postman_id": "8dfa45ce-720d-47bb-b865-b17d2e013e44",
+		"name": "student360",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hostel Details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "featureName",
+							"value": "AC",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.32/student360/api/create-feature",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"32"
+					],
+					"path": [
+						"student360",
+						"api",
+						"create-feature"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "super.admin@admin.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "umar",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.32/student360/api/login",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"32"
+					],
+					"path": [
+						"student360",
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Feature",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "featureName",
+							"value": "Dinner",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.32/student360/api/create-feature?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTUwMTIyLCJleHAiOjE1NjEzNTk3MjIsIm5iZiI6MTU2MDE1MDEyMiwianRpIjoick5YdEdhWW1GUm5YMlNtTSJ9.9fHQQjcb5A498qhTHIEj7UncsIzJ6fo9h6iTj43sUZw",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"32"
+					],
+					"path": [
+						"student360",
+						"api",
+						"create-feature"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTUwMTIyLCJleHAiOjE1NjEzNTk3MjIsIm5iZiI6MTU2MDE1MDEyMiwianRpIjoick5YdEdhWW1GUm5YMlNtTSJ9.9fHQQjcb5A498qhTHIEj7UncsIzJ6fo9h6iTj43sUZw"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Feature",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "23",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.32/student360/api/delete-features?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTUwMTIyLCJleHAiOjE1NjEzNTk3MjIsIm5iZiI6MTU2MDE1MDEyMiwianRpIjoick5YdEdhWW1GUm5YMlNtTSJ9.9fHQQjcb5A498qhTHIEj7UncsIzJ6fo9h6iTj43sUZw",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"32"
+					],
+					"path": [
+						"student360",
+						"api",
+						"delete-features"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTUwMTIyLCJleHAiOjE1NjEzNTk3MjIsIm5iZiI6MTU2MDE1MDEyMiwianRpIjoick5YdEdhWW1GUm5YMlNtTSJ9.9fHQQjcb5A498qhTHIEj7UncsIzJ6fo9h6iTj43sUZw"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Hostels",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "latitude",
+							"value": "31.4846565",
+							"type": "text"
+						},
+						{
+							"key": "longitude",
+							"value": "74.3151685",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "House no 3, Street no 30, F-7/1, F-7 Sector, 44000 Lahore, Pakistan",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "areaRadius",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "hostelCategory",
+							"value": "Girls",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.16/student360/api/search-hostels",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"16"
+					],
+					"path": [
+						"student360",
+						"api",
+						"search-hostels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "wifi",
+						"name": "Content-Type",
+						"value": "wifi",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "wifi"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "fullName",
+							"value": "Ali Raza",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "03231414124",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "aliraza@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Lahore",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "Pakistan",
+							"type": "text"
+						},
+						{
+							"key": "occupation",
+							"value": "Electrician",
+							"type": "text"
+						},
+						{
+							"key": "institute",
+							"value": "VU",
+							"type": "text"
+						},
+						{
+							"key": "dateOfBirth",
+							"value": "15-03-1989",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "Male",
+							"type": "text"
+						},
+						{
+							"key": "CNIC",
+							"value": "35201-4545451-1",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "aliraza2200",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "aliraza2200@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.32/student360/api/update-student?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTcwNDQ3LCJleHAiOjE1NjEzODAwNDcsIm5iZiI6MTU2MDE3MDQ0NywianRpIjoicFlPY1dRUm9qSnVrUEk1SiJ9.eDs1IsVRlI12f-h2y8RX3GvJ5jbcqRSCs1m7dXFfrS0",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"32"
+					],
+					"path": [
+						"student360",
+						"api",
+						"update-student"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTcwNDQ3LCJleHAiOjE1NjEzODAwNDcsIm5iZiI6MTU2MDE3MDQ0NywianRpIjoicFlPY1dRUm9qSnVrUEk1SiJ9.eDs1IsVRlI12f-h2y8RX3GvJ5jbcqRSCs1m7dXFfrS0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Mess Menu",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "breakFastMeal",
+							"value": "Anda Channa",
+							"type": "text"
+						},
+						{
+							"key": "lunchMeal",
+							"value": "Aloo wala Pratha",
+							"type": "text"
+						},
+						{
+							"key": "dinnerMeal",
+							"value": "Beaf",
+							"type": "text"
+						},
+						{
+							"key": "hostelId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.32/student360/api/update-mess-menu?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTU5NTc2LCJleHAiOjE1NjEzNjkxNzYsIm5iZiI6MTU2MDE1OTU3NiwianRpIjoiOFRIVmNqSmJia0hFOG9ybCJ9.4n9lrljRRU53V-L3dL3J_Cc_yODzWKtDboHKpsTViZA",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"32"
+					],
+					"path": [
+						"student360",
+						"api",
+						"update-mess-menu"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTU5NTc2LCJleHAiOjE1NjEzNjkxNzYsIm5iZiI6MTU2MDE1OTU3NiwianRpIjoiOFRIVmNqSmJia0hFOG9ybCJ9.4n9lrljRRU53V-L3dL3J_Cc_yODzWKtDboHKpsTViZA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search By Features",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "wifi",
+						"name": "Content-Type",
+						"value": "wifi",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "wifi"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "breakFastMeal",
+							"value": "Anda Channa",
+							"type": "text"
+						},
+						{
+							"key": "lunchMeal",
+							"value": "Aloo wala Pratha",
+							"type": "text"
+						},
+						{
+							"key": "dinnerMeal",
+							"value": "Beaf",
+							"type": "text"
+						},
+						{
+							"key": "hostelId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.32/student360/api/search-by-features?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTU5NTc2LCJleHAiOjE1NjEzNjkxNzYsIm5iZiI6MTU2MDE1OTU3NiwianRpIjoiOFRIVmNqSmJia0hFOG9ybCJ9.4n9lrljRRU53V-L3dL3J_Cc_yODzWKtDboHKpsTViZA",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"32"
+					],
+					"path": [
+						"student360",
+						"api",
+						"search-by-features"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTU5NTc2LCJleHAiOjE1NjEzNjkxNzYsIm5iZiI6MTU2MDE1OTU3NiwianRpIjoiOFRIVmNqSmJia0hFOG9ybCJ9.4n9lrljRRU53V-L3dL3J_Cc_yODzWKtDboHKpsTViZA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Approve Hostel Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "wifi",
+						"name": "Content-Type",
+						"value": "wifi",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "wifi"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "breakFastMeal",
+							"value": "Anda Channa",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lunchMeal",
+							"value": "Aloo wala Pratha",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "dinnerMeal",
+							"value": "Beaf",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "hostelId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.32/student360/api/send-approve-hostel-request?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTU5NTc2LCJleHAiOjE1NjEzNjkxNzYsIm5iZiI6MTU2MDE1OTU3NiwianRpIjoiOFRIVmNqSmJia0hFOG9ybCJ9.4n9lrljRRU53V-L3dL3J_Cc_yODzWKtDboHKpsTViZA",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"32"
+					],
+					"path": [
+						"student360",
+						"api",
+						"send-approve-hostel-request"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMyL3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMTU5NTc2LCJleHAiOjE1NjEzNjkxNzYsIm5iZiI6MTU2MDE1OTU3NiwianRpIjoiOFRIVmNqSmJia0hFOG9ybCJ9.4n9lrljRRU53V-L3dL3J_Cc_yODzWKtDboHKpsTViZA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Rating",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "score",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "userId",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "hostelId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "areaRadius",
+							"value": "5",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "hostelCategory",
+							"value": "Girls",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.16/student360/api/create-rating?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjE2L3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMjMwMDI4LCJleHAiOjE1NjE0Mzk2MjgsIm5iZiI6MTU2MDIzMDAyOCwianRpIjoiVU1hYURwc05ZOW5MbDg0ciJ9.rNUkAvn0ggjTMNtWK3GPsgzDpFFn7F4YBNdJGCGgdxo",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"16"
+					],
+					"path": [
+						"student360",
+						"api",
+						"create-rating"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjE2L3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMjMwMDI4LCJleHAiOjE1NjE0Mzk2MjgsIm5iZiI6MTU2MDIzMDAyOCwianRpIjoiVU1hYURwc05ZOW5MbDg0ciJ9.rNUkAvn0ggjTMNtWK3GPsgzDpFFn7F4YBNdJGCGgdxo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Student",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "score",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "userId",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "hostelId",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "areaRadius",
+							"value": "5",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "hostelCategory",
+							"value": "Girls",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.16/student360/api/create-rating?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjE2L3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMjMwMDI4LCJleHAiOjE1NjE0Mzk2MjgsIm5iZiI6MTU2MDIzMDAyOCwianRpIjoiVU1hYURwc05ZOW5MbDg0ciJ9.rNUkAvn0ggjTMNtWK3GPsgzDpFFn7F4YBNdJGCGgdxo",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"16"
+					],
+					"path": [
+						"student360",
+						"api",
+						"create-rating"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjE2L3N0dWRlbnQzNjAvYXBpL2xvZ2luIiwiaWF0IjoxNTYwMjMwMDI4LCJleHAiOjE1NjE0Mzk2MjgsIm5iZiI6MTU2MDIzMDAyOCwianRpIjoiVU1hYURwc05ZOW5MbDg0ciJ9.rNUkAvn0ggjTMNtWK3GPsgzDpFFn7F4YBNdJGCGgdxo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Hostel",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "fullName",
+							"value": "Usman Khan",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "03034242154",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "usman",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "usman@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "roleId",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.16/student360/api/create-student",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"16"
+					],
+					"path": [
+						"student360",
+						"api",
+						"create-student"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
