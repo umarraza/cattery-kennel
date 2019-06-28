@@ -162,9 +162,12 @@ class User extends Authenticatable
 
     public function getFullNameAttribute() {
 
-        if ($this->isSupllier() && !empty($this->Hostel))
+        // return "Function called";
 
-        return $this->Hostel->hostelName;
+
+        // if ($this->isSupllier() && !empty($this->Supllier))
+
+        // return $this->Hostel->hostelName;
         
     }
 

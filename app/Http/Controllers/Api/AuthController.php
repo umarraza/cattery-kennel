@@ -70,9 +70,9 @@ class AuthController extends Controller
                 $response['status']= true;   
 
             }
-            elseif ($user->isHostelAdmin())
+            elseif ($user->isSupplier())
             {
-                $hostel = Hostel::where('userId', '=', $user->id)->first();
+                // $hostel = Hostel::where('userId', '=', $user->id)->first();
 
                 if ($user->verified == 0 )
                 {
@@ -86,13 +86,13 @@ class AuthController extends Controller
                     $response['data']['message']              =   "Request Successfull!!";
                     $response['data']['token']                =   User::loginUser($user->id,$token);
                     $response['data']['result']['userData']   =   $user->getArrayResponse();
-                    $response['data']['result']['hostel']     =   $hostel;
+                    // $response['data']['result']['hostel']     =   $hostel;
                     $response['status']= true;
                 }
             }
-            elseif ($user->isStudent())
+            elseif ($user->isCustomer())
             {
-                $student = Student::where('userId', '=', $user->id)->first();
+                // $student = Student::where('userId', '=', $user->id)->first();
 
                 if ($user->verified == 0 )
                 {
@@ -233,6 +233,7 @@ class AuthController extends Controller
 
     public function forgotPass(Request $request)
     {
+
         $response = [
                 'data' => [
                     'code' => 400,
@@ -254,25 +255,26 @@ class AuthController extends Controller
             {
                 $user = User::where('username','=',$request['username'])->first();
                 $userId = $user->id;
-                $username = $user->username;
-                           
+                $email = $user->email;
+                $username = $user->username;         
+                
                 $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
                 $password = substr($random, 0, 10);
                 
-                $tousername = $username;
+                $tousername = $email;
 
                 \Mail::send('mail',["username"=>$username, "userId"=>$userId,"password"=>$password], function ($message) use ($tousername) {
-                $message->from('umarraza2200@gmail.com', 'password');
+                $message->from('info@fantasycricleague.online', 'password');
                 $message->to($tousername)->subject('Forgot Password!');
 
                });
              
                 if ($user) 
                 {
-                    $response['data']['code']       = 200;
-                    $response['status']             = true;
-                    $response['data']['result']     = $user;
-                    $response['data']['message']    = 'Forgot Password email send successfuly';
+                    $response['data']['code']     =  200;
+                    $response['status']           =  true;
+                    $response['data']['result']   =  $user;
+                    $response['data']['message']  =  'Forgot Password email send successfuly';
                 }
             }
         return $response;
@@ -280,7 +282,9 @@ class AuthController extends Controller
 
     public function changePassword(Request $request)
     {
+        
         $user = JWTAuth::toUser($request->token);
+
         $response = [
                 'data' => [
                    'code'      => 400,

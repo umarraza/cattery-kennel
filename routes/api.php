@@ -19,6 +19,12 @@ Route::post('/signup', 'Api\AuthController@signUp');
 Route::post('/forgot-password', 'Api\AuthController@forgotPass');
 Route::post('/reset-password', 'Api\AuthController@changePassword');
 
+Route::post('/create-venue', 'Api\VanuesController@createVenue');
 
-Route::post('/create-supllier', 'Api\SupplierController@createSupllier');
+Route::post('/create-cattery-image', 'Api\CatteryImagesController@createImages');
+
+Route::post('/new-customer', 'Api\CustomerController@newCustomer');
+Route::post('/new-booking', 'Api\BookingsController@newBooking');
+
+
 

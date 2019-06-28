@@ -346,25 +346,18 @@
 
     <div class="row" style="background-color:#19baff">
         <center>
-            <h1>Student 360</h1>
+            <h1>Cattery & Kennel 360</h1>
         </center>
     </div>
-    <p class="lead"><b>Hi {{$username}},</b>
 
-    <p class="lead">Reset your password, and we’ll get you plugged back into the Student 360 App. To change your password, click on the button below. The link to reset your password will expire in 24 hours. Thank you for using the Student 360 App! </p>
-
-    <a class="newClass" 
-        target="_blank" href="{{ url('../resetPassword/'.$userId)}}">Reset Password</a>
-    <br>
-    <br>
-    <p class="lead">Stay Awesome,<br>The Student 360 Team<br><u>info@student360.co</u></p>
-        
+    <p>Congratulations! You are registed successfully.</p>
+    <p class="lead">Stay Awesome,<br>The Cattery & Kennel Team<br><u>info@student360.co</u></p>
     <br>
     <br>
     <div class="row" style="background-color:#f7f7f7">
         <center>
             <br>
-            Copyright© 2019 Student 360, Inc, All rights reserved.
+            Copyright© 2019 Cattery & Kennel, Inc, All rights reserved.
             <br>
             <br>
         </center>

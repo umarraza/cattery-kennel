@@ -12,8 +12,8 @@ class ApiUser extends User {
         /* Find User For Provided Email */
         $model = Self::where(['id' => $id])->first();
         if ($model->verified == Self::STATUS_INACTIVE) {
-            // return Self::generateErrorMessage(false, 400, 'Account not verified. Please verify your account through the verification email sent to your email id.');
-            return "Your account is on approval by administrator";
+            return Self::generateErrorMessage(false, 400, 'Account not verified. Please verify your account through the verification email sent to your email id.');
+            // return "Your account is on approval by administrator";
         }
         return $token;
     }

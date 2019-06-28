@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2019 at 03:05 PM
+-- Generation Time: Jun 28, 2019 at 03:05 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -21,6 +21,78 @@ SET time_zone = "+00:00";
 --
 -- Database: `cattery&kennels`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` int(11) NOT NULL,
+  `venueId` int(11) NOT NULL,
+  `customerId` int(11) NOT NULL,
+  `isActive` tinyint(3) DEFAULT NULL,
+  `isRegistered` tinyint(3) DEFAULT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `venueId`, `customerId`, `isActive`, `isRegistered`, `createdAt`, `updatedAt`) VALUES
+(3, 2, 6, 1, 1, '2019-06-28 07:36:00', '2019-06-28 07:36:00'),
+(4, 2, 7, 1, 1, '2019-06-28 07:36:13', '2019-06-28 07:36:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cattery_images`
+--
+
+CREATE TABLE `cattery_images` (
+  `id` int(10) NOT NULL,
+  `imageName` varchar(100) NOT NULL,
+  `venueId` int(10) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cattery_images`
+--
+
+INSERT INTO `cattery_images` (`id`, `imageName`, `venueId`, `createdAt`, `updatedAt`) VALUES
+(1, 'image_1561701624.jpeg', 1, '2019-06-28 01:00:24', '2019-06-28 01:00:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` int(10) NOT NULL,
+  `bookerName` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `phoneNumber` varchar(50) NOT NULL,
+  `occupantName` varchar(50) NOT NULL,
+  `dateOfBirth` varchar(10) NOT NULL,
+  `requirements` varchar(200) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `bookerName`, `email`, `address`, `phoneNumber`, `occupantName`, `dateOfBirth`, `requirements`, `createdAt`, `updatedAt`) VALUES
+(6, 'Usman Khan', 'usman@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', '21-6-2019', 'Some requirements', '2019-06-28 07:36:00', '2019-06-28 07:36:00'),
+(7, 'Usman Khan', 'usman@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', '21-6-2019', 'Some requirements', '2019-06-28 07:36:13', '2019-06-28 07:36:13');
 
 -- --------------------------------------------------------
 
@@ -44,34 +116,6 @@ INSERT INTO `roles` (`id`, `description`, `label`, `createdAt`, `updatedAt`) VAL
 (1, 'Super Admin', 'super_admin', '2019-05-02 12:33:33', '0000-00-00 00:00:00'),
 (2, 'Supplier', 'Supplier', '2019-06-27 12:30:56', '0000-00-00 00:00:00'),
 (3, 'Customer', 'Customer', '2019-06-27 12:31:00', '0000-00-00 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `suplliers`
---
-
-CREATE TABLE `suplliers` (
-  `id` int(10) NOT NULL,
-  `buisnessName` varchar(50) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `phoneNumber` varchar(50) NOT NULL,
-  `buisnessDescription` varchar(500) NOT NULL,
-  `facilities` varchar(500) NOT NULL,
-  `serviceaRate` varchar(50) NOT NULL,
-  `discountAvailable` varchar(50) NOT NULL,
-  `type` varchar(50) NOT NULL,
-  `userId` int(10) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `suplliers`
---
-
-INSERT INTO `suplliers` (`id`, `buisnessName`, `address`, `phoneNumber`, `buisnessDescription`, `facilities`, `serviceaRate`, `discountAvailable`, `type`, `userId`, `createdAt`, `updatedAt`) VALUES
-(1, 'Cattery', 'Lahore, Pakistan', '03034969407', 'Some Description about the buisness of cattery and kennel', 'some facilities', '10', '50%', 'kennel', 16, '2019-06-27 08:01:35', '2019-06-27 08:01:35');
 
 -- --------------------------------------------------------
 
@@ -105,22 +149,64 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `remember_token`, `roleId`, `resetPasswordToken`, `createdResetPToken`, `avatarFilePath`, `deviceToken`, `onlineStatus`, `verified`, `googleLogin`, `facebookLogin`, `language`, `createdAt`, `updatedAt`) VALUES
 (1, 'super.admin@admin.com', 'super.admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 'J4Wo5S1I3oG53IGMe2ttEW2YFKojus9tizVBsMCr59YPTrbQqUd00YudN4Og', 1, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-06-27 11:25:48', '2019-06-26 19:00:00'),
-(16, 'umarraza', 'umarraza2200@gmail.com', '$2y$10$UQJYtPDhLTQw2dm8iSBOd.7n3ya4kxLdw2kjNov4aL9GFsrLYUy0m', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-06-27 07:45:31', '2019-06-27 07:45:31');
+(16, 'umarraza', 'umarraza2200@gmail.com', '$2y$10$Az2KVdntLMljCTGoyzszUeSG5MLSgc0kkNTScgWVKZrvPus2D9iRu', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-06-28 10:23:46', '2019-06-28 05:23:46'),
+(28, 'usman', 'usman@gmail.com', '$2y$10$htnf8YMMHUgUvMCkZTeQO.MrR1r/0hV8BMC2zfYH6E.hAlLAiDEYK', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-06-28 07:36:00', '2019-06-28 07:36:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `venues`
+--
+
+CREATE TABLE `venues` (
+  `id` int(10) NOT NULL,
+  `buisnessName` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `phoneNumber` varchar(50) NOT NULL,
+  `buisnessDescription` varchar(500) NOT NULL,
+  `facilities` varchar(500) NOT NULL,
+  `serviceaRate` varchar(50) NOT NULL,
+  `discountAvailable` varchar(50) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `isPaid` varchar(50) NOT NULL,
+  `userId` int(10) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `venues`
+--
+
+INSERT INTO `venues` (`id`, `buisnessName`, `address`, `phoneNumber`, `buisnessDescription`, `facilities`, `serviceaRate`, `discountAvailable`, `type`, `isPaid`, `userId`, `createdAt`, `updatedAt`) VALUES
+(2, 'Cattery', 'Lahore, Pakistan', '03034969407', 'Some Description about the buisness of cattery and kennel', 'some facilities', '10', '50%', 'kennel', '8.25GBP+VAT', 16, '2019-06-28 05:51:06', '2019-06-28 05:51:06');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `roles`
+-- Indexes for table `bookings`
 --
-ALTER TABLE `roles`
+ALTER TABLE `bookings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `suplliers`
+-- Indexes for table `cattery_images`
 --
-ALTER TABLE `suplliers`
+ALTER TABLE `cattery_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -130,8 +216,32 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `venues`
+--
+ALTER TABLE `venues`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `cattery_images`
+--
+ALTER TABLE `cattery_images`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -140,16 +250,16 @@ ALTER TABLE `roles`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `suplliers`
---
-ALTER TABLE `suplliers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `venues`
+--
+ALTER TABLE `venues`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -11,12 +11,12 @@ use JWTAuthException;
 use JWTAuth;
 use DB;
 
-use App\Models\Api\ApiSupplier as Supllier;
+use App\Models\Api\ApiVenue as Venue;
 
-class SupplierController extends Controller
+class VanuesController extends Controller
 {
     
-    public function createSupllier(Request $request)
+    public function createVenue(Request $request)
     {
 
         $response = [
@@ -56,9 +56,10 @@ class SupplierController extends Controller
 
             try {
 
-                $supllier = Supllier::create([
+                $venue = Venue::create([
 
                         'buisnessName' => $request->get('buisnessName'),
+                        'email' => $request->get('email'),
                         'address' => $request->get('address'),
                         'phoneNumber' => $request->get('phoneNumber'),
                         'buisnessDescription' => $request->get('buisnessDescription'),
@@ -66,15 +67,33 @@ class SupplierController extends Controller
                         'serviceaRate' => $request->get('serviceaRate'),
                         'discountAvailable' => $request->get('discountAvailable'),
                         'type' => $request->get('type'),
+                        'isPaid' => $request->get('isPaid'),
                         'userId' => $request->get('userId'),
+
                     ]);
+
+                    // $checkPayment = $supllier->isPaid;
+
+                    // if(isset($checkPayment)) {
+
+                    //     $buisnessName = $request->get('buisnessName');
+                    //     $message = "A random message";
+                    //     $tousername = $request->get('email');
+
+                    //     \Mail::send('mail',["buisnessName"=>$buisnessName], function ($message) use ($tousername) {
+                    
+                    //         $message->from('info@fantasycricleague.online');
+                    //         $message->to($tousername)->subject('Confirm your buisness');
+                
+                    //    });
+                    // }
 
                     DB::commit();
 
                     $response['data']['code']       = 200;
                     $response['status']             = true;
-                    $response['data']['result']     = $supllier;
-                    $response['data']['message']    = 'Supplier created Successfully';
+                    $response['data']['result']     = $venue;
+                    $response['data']['message']    = 'Venue created Successfully';
 
             } catch (Exception $e) {
 
