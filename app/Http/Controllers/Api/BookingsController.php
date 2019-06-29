@@ -17,6 +17,11 @@ class BookingsController extends Controller
 {
     public function newBooking(Request $request)
     {
+
+        $customer = Booking::find(3)->customer;
+
+        return $customer;
+
         $response = [
             'data' => [
                 'code' => 400,

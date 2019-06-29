@@ -27,4 +27,7 @@ Route::post('/new-customer', 'Api\CustomerController@newCustomer');
 Route::post('/new-booking', 'Api\BookingsController@newBooking');
 
 
+Route::post('/list-customer-bookings', 'Api\CustomerController@customerBookings');
+
+
 

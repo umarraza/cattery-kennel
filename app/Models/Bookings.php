@@ -25,9 +25,15 @@ class Bookings extends Model
         'venueId',
         'customerId',
         'isActive',
-        'isRegistered'
-
+        'isRegistered',
+        'userId'
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'id');
+    }
+
 
     public function getArrayResponse() {
         return [
@@ -37,6 +43,8 @@ class Bookings extends Model
             'customerId'    =>   $this->customerId,
             'isActive'      =>   $this->isActive,
             'isRegistered'  =>   $this->isRegistered,
+            'userId'        =>   $this->userId,
+
         ];
     }
 }

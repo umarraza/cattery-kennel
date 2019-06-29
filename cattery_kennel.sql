@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2019 at 03:05 PM
+-- Generation Time: Jun 29, 2019 at 08:17 AM
 -- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- PHP Version: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cattery&kennels`
+-- Database: `cattery&kennel`
 --
 
 -- --------------------------------------------------------
@@ -44,7 +44,7 @@ CREATE TABLE `bookings` (
 
 INSERT INTO `bookings` (`id`, `venueId`, `customerId`, `isActive`, `isRegistered`, `createdAt`, `updatedAt`) VALUES
 (3, 2, 6, 1, 1, '2019-06-28 07:36:00', '2019-06-28 07:36:00'),
-(4, 2, 7, 1, 1, '2019-06-28 07:36:13', '2019-06-28 07:36:13');
+(4, 2, 6, 1, 1, '2019-06-28 07:36:13', '2019-06-28 07:36:13');
 
 -- --------------------------------------------------------
 
@@ -82,6 +82,7 @@ CREATE TABLE `customers` (
   `occupantName` varchar(50) NOT NULL,
   `dateOfBirth` varchar(10) NOT NULL,
   `requirements` varchar(200) NOT NULL,
+  `userId` int(10) DEFAULT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -90,9 +91,9 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `bookerName`, `email`, `address`, `phoneNumber`, `occupantName`, `dateOfBirth`, `requirements`, `createdAt`, `updatedAt`) VALUES
-(6, 'Usman Khan', 'usman@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', '21-6-2019', 'Some requirements', '2019-06-28 07:36:00', '2019-06-28 07:36:00'),
-(7, 'Usman Khan', 'usman@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', '21-6-2019', 'Some requirements', '2019-06-28 07:36:13', '2019-06-28 07:36:13');
+INSERT INTO `customers` (`id`, `bookerName`, `email`, `address`, `phoneNumber`, `occupantName`, `dateOfBirth`, `requirements`, `userId`, `createdAt`, `updatedAt`) VALUES
+(6, 'Usman Khan', 'usman@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', '21-6-2019', 'Some requirements', 0, '2019-06-28 07:36:00', '2019-06-28 07:36:00'),
+(7, 'Usman Khan', 'usman@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', '21-6-2019', 'Some requirements', 0, '2019-06-28 07:36:13', '2019-06-28 07:36:13');
 
 -- --------------------------------------------------------
 

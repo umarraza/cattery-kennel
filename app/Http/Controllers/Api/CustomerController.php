@@ -19,7 +19,6 @@ class CustomerController extends Controller
 {
     public function newCustomer(Request $request)
     {
-
         $response = [
             'data' => [
                 'code' => 400,
@@ -59,7 +58,6 @@ class CustomerController extends Controller
                 if ($isRegistered == 1) {
 
                     $password = $request->get('password');
-
                     $username = User::whereUsername($request->username)->first();
 
                     $user = User::create([
@@ -113,5 +111,16 @@ class CustomerController extends Controller
         }
         return $response;
     }
+
+    public function customerBookings(Request $request) {
+        
+        $customerId = $request->get('customerId');
+
+        $comments = Customer::find($customerId)->bookings;
+
+        return $comments;
+
+    }
+
 
 }

@@ -22,6 +22,11 @@ class Customer extends Model
         'requirements',
     ];
 
+    public function bookings()
+    {
+        return $this->hasMany(Bookings::class, 'customerId');
+    }
+
 
     public function getArrayResponse() {
         
