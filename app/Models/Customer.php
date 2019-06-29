@@ -17,9 +17,9 @@ class Customer extends Model
         'email',
         'address',
         'phoneNumber',
-        'occupantName',
-        'dateOfBirth',
+        'pets',
         'requirements',
+        'userId'
     ];
 
     public function bookings()
@@ -37,9 +37,10 @@ class Customer extends Model
             'email'         =>  $this->email,
             'address'       =>  $this->address,
             'phoneNumber'   =>  $this->phoneNumber,
-            'occupantName'  =>  $this->occupantName,
-            'dateOfBirth'   =>  $this->dateOfBirth,
+            'pets'          =>  $this->pets,
             'requirements'  =>  $this->requirements,
+            'userId'        =>  $this->userId,
+
 
         ];
     }

@@ -89,7 +89,7 @@ class User extends Authenticatable
         return $this->hasOne(Supllier::class,'userId','id');
     }
 
-    public function isSupplier(){
+    public function isVenue(){
         
         if ($this->role->label == self::SUPLLIER)
             return true;
@@ -117,7 +117,7 @@ class User extends Authenticatable
         if ($this->isSuperAdmin() )
             return true;
         
-        elseif ($this->isSupplier() )
+        elseif ($this->isVenue() )
             return true;
   
         elseif ($this->isCustomer() )

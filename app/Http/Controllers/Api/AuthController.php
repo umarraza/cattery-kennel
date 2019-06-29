@@ -70,7 +70,7 @@ class AuthController extends Controller
                 $response['status']= true;   
 
             }
-            elseif ($user->isSupplier())
+            elseif ($user->isVenue())
             {
                 // $hostel = Hostel::where('userId', '=', $user->id)->first();
 
@@ -196,7 +196,7 @@ class AuthController extends Controller
                             $response['data']['result']['userData'] =   $user->getArrayResponse();
                             $response['status']= true;    
                         }
-                        elseif($user->isSupplier())
+                        elseif($user->isVenue())
                         {
 
                             $response['data']['code']                =   200;
