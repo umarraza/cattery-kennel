@@ -134,18 +134,18 @@
 					]
 				},
 				"url": {
-					"raw": "http://192.168.10.13/cattery-kennel/api/create-supllier",
+					"raw": "http://192.168.10.21/cattery-kennel/api/create-venue",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"10",
-						"13"
+						"21"
 					],
 					"path": [
 						"cattery-kennel",
 						"api",
-						"create-supllier"
+						"create-venue"
 					]
 				}
 			},
@@ -309,8 +309,8 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "buisnessName",
-							"value": "Cattery",
+							"key": "bookerName",
+							"value": "Usman Khan",
 							"type": "text"
 						},
 						{
@@ -324,60 +324,168 @@
 							"type": "text"
 						},
 						{
-							"key": "buisnessDescription",
-							"value": "Some Description about the buisness of cattery and kennel",
+							"key": "occupantName",
+							"value": "Sandy",
 							"type": "text"
 						},
 						{
-							"key": "facilities",
-							"value": "some facilities",
+							"key": "dateOfBirth",
+							"value": "21-6-2019",
 							"type": "text"
 						},
 						{
-							"key": "serviceaRate",
-							"value": "10",
+							"key": "requirements",
+							"value": "Some requirements",
 							"type": "text"
 						},
 						{
-							"key": "discountAvailable",
-							"value": "50%",
-							"type": "text"
-						},
-						{
-							"key": "type",
-							"value": "kennel",
-							"type": "text"
-						},
-						{
-							"key": "isPaid",
-							"value": " 8.25GBP+VAT",
-							"type": "text"
-						},
-						{
-							"key": "userId",
-							"value": "16",
-							"type": "text"
+							"key": "username",
+							"value": "usman",
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "email",
-							"value": "umarraza2200@gmail.com",
+							"value": "usman@gmail.com",
 							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "roleId",
+							"value": "3",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "venueId",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "isRegistered",
+							"value": "1",
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.10.5/cattery-kennel/api/create-venue",
+					"raw": "http://192.168.10.21/cattery-kennel/api/new-customer",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"10",
-						"5"
+						"21"
 					],
 					"path": [
 						"cattery-kennel",
 						"api",
-						"create-venue"
+						"new-customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Customer Bookings",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "bookerName",
+							"value": "Usman Khan",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Lahore, Pakistan",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "03034969407",
+							"type": "text"
+						},
+						{
+							"key": "occupantName",
+							"value": "Sandy",
+							"type": "text"
+						},
+						{
+							"key": "dateOfBirth",
+							"value": "21-6-2019",
+							"type": "text"
+						},
+						{
+							"key": "requirements",
+							"value": "Some requirements",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "usman",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "usman@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "roleId",
+							"value": "3",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "venueId",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "isRegistered",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.21/cattery-kennel/api/new-customer",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"21"
+					],
+					"path": [
+						"cattery-kennel",
+						"api",
+						"new-customer"
 					]
 				}
 			},
