@@ -84,12 +84,31 @@ class CustomerController extends Controller
                         'email'         =>  $request->get('email'),
                         'address'       =>  $request->get('address'),
                         'phoneNumber'   =>  $request->get('phoneNumber'),
-                        'pets'          =>  $request->get('pets'),  
+                        'pets'          =>  $request->get('pets'),              // There should be a seprate table for creating catteries and kennels
                         'requirements'  =>  $request->get('requirements'),
                         'userId'        =>  $userId,
     
                     ]);
     
+
+                    /*
+
+                        CHECKING THE AVAILIBILITY OF CATTERY PLACE IN REQUIRED DATE.
+
+                        To get occupied rooms for the period specified, i.e '2016-02-27'-'2016-02-24', you can use:
+
+                        SELECT DISTINCT room_no
+                        FROM reservation
+                        WHERE check_in <= '2016-02-27' AND check_out >= '2016-02-24'
+                        Output:
+
+                        room_no
+                        =======
+                        13
+                        14
+                        
+                    */
+
                     $booking = Booking::create([
     
                         'venueId'       =>  $request->get('venueId'),
