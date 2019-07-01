@@ -122,14 +122,11 @@ class SearchController extends Controller
                     }
                 }
 
-                $response['data']['code']       =  200;
-                $response['data']['message']    =  'Request Successfull';
-                $response['data']['result']     =  $venues;
-                $response['status']             =  true;
+                    $response['data']['code']       =  200;
+                    $response['data']['message']    =  'Request Successfull';
+                    $response['data']['result']     =  $venues;
+                    $response['status']             =  true;
                 }
-
-
-
     
             } catch (Exception $e) {
 
