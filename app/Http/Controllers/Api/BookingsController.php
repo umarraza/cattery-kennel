@@ -12,69 +12,46 @@ use JWTAuth;
 use App\Models\Api\ApiBookings as Booking;
 
 use DB;
+use Carbon\Carbon;
+
 
 class BookingsController extends Controller
 {
-    public function newBooking(Request $request)
+    public function updateBookings(Request $request)
     {
-
-        $customer = Booking::find(3)->customer;
-
-        return $customer;
+        $response = [
+            'data' => [
+            'code'      =>  400,
+            'errors'    =>  '',
+            'message'   =>  'Invalid Token! User Not Found.',
+        ],
+                'status' => false
+        ];
 
         $response = [
             'data' => [
                 'code' => 400,
                 'message' => 'Something went wrong. Please try again later!',
             ],
-
             'status' => false
-        
         ];
-
-        $rules = [
-
-            'venueId'      => 'required',
-            'customerId'   => 'required',
-            'isActive'     => 'required',
-            'isRegistered' => 'required',
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            
-            $response['data']['message'] = 'Invalid input values.';
-            $response['data']['errors'] = $validator->messages();
         
-        }
-        else
-        {
-            DB::beginTransaction();
+        try {
 
-            try {
+            $bookings = Booking::whereCheckout(Carbon::today())->get();
 
-                $booking = Booking::create([
+            // update booking status
 
-                    'venueId'       =>  $request->get('venueId'),
-                    'customerId'    =>  $request->get('customerId'),
-                    'isActive'      =>  $request->get('isActive'),
-                    'isRegistered'  =>  $request->get('isRegistered'),
+            return $bookings;
 
-                    ]);
-
-                    DB::commit();
-
-                    $response['data']['code']     =  200;
-                    $response['status']           =  true;
-                    $response['data']['result']   =  $booking;
-                    $response['data']['message']  =  'New booking created successfully';
+            $response['data']['code']       =  200;
+            $response['data']['message']    =  'Request Successfull';
+            $response['data']['result']     =  $customers;
+            $response['status']             =  true;
 
             } catch (Exception $e) {
 
-                DB::rollBack();
-                throw $e;
-            }
+            throw $e;
         }
         return $response;
     }

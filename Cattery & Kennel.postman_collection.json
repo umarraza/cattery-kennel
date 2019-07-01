@@ -23,7 +23,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "umarraza",
+							"value": "shaheenkhan",
 							"type": "text"
 						},
 						{
@@ -38,19 +38,19 @@
 						},
 						{
 							"key": "email",
-							"value": "umarraza2200@gmail.com",
+							"value": "shaheenkhan@gmail.com",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.10.13/cattery-kennel/api/signup",
+					"raw": "http://192.168.10.21/cattery-kennel/api/signup",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"10",
-						"13"
+						"21"
 					],
 					"path": [
 						"cattery-kennel",
@@ -123,12 +123,32 @@
 						},
 						{
 							"key": "userId",
-							"value": "16",
+							"value": "39",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "umarraza2200@gmail.com",
+							"value": "shaheenkhan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "isAvailable",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "totalCats",
+							"value": "30",
+							"type": "text"
+						},
+						{
+							"key": "totalDogs",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "postcode",
+							"value": "53720",
 							"type": "text"
 						}
 					]
@@ -310,7 +330,7 @@
 					"formdata": [
 						{
 							"key": "bookerName",
-							"value": "Usman Khan",
+							"value": "Malik Hamza",
 							"type": "text"
 						},
 						{
@@ -324,14 +344,15 @@
 							"type": "text"
 						},
 						{
-							"key": "occupantName",
+							"key": "pets",
 							"value": "Sandy",
 							"type": "text"
 						},
 						{
 							"key": "dateOfBirth",
 							"value": "21-6-2019",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "requirements",
@@ -340,49 +361,64 @@
 						},
 						{
 							"key": "username",
-							"value": "usman",
-							"type": "text",
-							"disabled": true
+							"value": "malikhamza",
+							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "usman@gmail.com",
+							"value": "malikhamza@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
 							"value": "123456",
-							"type": "text",
-							"disabled": true
+							"type": "text"
 						},
 						{
 							"key": "roleId",
 							"value": "3",
-							"type": "text",
-							"disabled": true
+							"type": "text"
 						},
 						{
 							"key": "venueId",
-							"value": "2",
-							"type": "text",
-							"disabled": true
+							"value": "4",
+							"type": "text"
 						},
 						{
 							"key": "isRegistered",
 							"value": "1",
-							"type": "text",
-							"disabled": true
+							"type": "text"
+						},
+						{
+							"key": "noOfCats",
+							"value": "7",
+							"type": "text"
+						},
+						{
+							"key": "noOfDogs",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "checkIn",
+							"value": "05-07-2019",
+							"type": "text"
+						},
+						{
+							"key": "checkOut",
+							"value": "15-07-2019",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.10.21/cattery-kennel/api/new-customer",
+					"raw": "http://192.168.10.41/cattery-kennel/api/new-customer",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"10",
-						"21"
+						"41"
 					],
 					"path": [
 						"cattery-kennel",
@@ -409,72 +445,14 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "bookerName",
-							"value": "Usman Khan",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "Lahore, Pakistan",
-							"type": "text"
-						},
-						{
-							"key": "phoneNumber",
-							"value": "03034969407",
-							"type": "text"
-						},
-						{
-							"key": "occupantName",
-							"value": "Sandy",
-							"type": "text"
-						},
-						{
-							"key": "dateOfBirth",
-							"value": "21-6-2019",
-							"type": "text"
-						},
-						{
-							"key": "requirements",
-							"value": "Some requirements",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "usman",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "email",
-							"value": "usman@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "123456",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "roleId",
-							"value": "3",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "venueId",
-							"value": "2",
-							"type": "text"
-						},
-						{
-							"key": "isRegistered",
-							"value": "0",
+							"key": "isActive",
+							"value": "1",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.10.21/cattery-kennel/api/new-customer",
+					"raw": "http://192.168.10.21/cattery-kennel/api/list-new-bookings?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE2LCJpc3MiOiJodHRwOi8vMTkyLjE2OC4xMC4yMS9jYXR0ZXJ5LWtlbm5lbC9hcGkvbG9naW4iLCJpYXQiOjE1NjE4MDM2MzcsImV4cCI6MTU2MzAxMzIzNywibmJmIjoxNTYxODAzNjM3LCJqdGkiOiJaOFpHaERPc0tEdEZRSnRaIn0.ZIOFkdjpnRiQbNxfbOlQswII7zHBOY7GkSOELLiUUsE",
 					"protocol": "http",
 					"host": [
 						"192",
@@ -485,7 +463,116 @@
 					"path": [
 						"cattery-kennel",
 						"api",
-						"new-customer"
+						"list-new-bookings"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE2LCJpc3MiOiJodHRwOi8vMTkyLjE2OC4xMC4yMS9jYXR0ZXJ5LWtlbm5lbC9hcGkvbG9naW4iLCJpYXQiOjE1NjE4MDM2MzcsImV4cCI6MTU2MzAxMzIzNywibmJmIjoxNTYxODAzNjM3LCJqdGkiOiJaOFpHaERPc0tEdEZRSnRaIn0.ZIOFkdjpnRiQbNxfbOlQswII7zHBOY7GkSOELLiUUsE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Venues",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "checkIn",
+							"value": "01-07-2019",
+							"type": "text"
+						},
+						{
+							"key": "checkOut",
+							"value": "10-07-2019",
+							"type": "text"
+						},
+						{
+							"key": "clientCats",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "clientDogs",
+							"value": "19",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Lahore",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "postcode",
+							"value": "53720",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.41/cattery-kennel/api/search-venues",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"41"
+					],
+					"path": [
+						"cattery-kennel",
+						"api",
+						"search-venues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Booking Status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://192.168.10.41/cattery-kennel/api/update-bookings-status",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"41"
+					],
+					"path": [
+						"cattery-kennel",
+						"api",
+						"update-bookings-status"
 					]
 				}
 			},

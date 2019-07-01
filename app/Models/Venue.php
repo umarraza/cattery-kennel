@@ -23,13 +23,17 @@ class Venue extends Model
     protected $fillable = [
         'buisnessName',
         'address',
+        'postcode',
         'phoneNumber',
         'buisnessDescription',
         'facilities',
-        'serviceaRate',
+        'serviceRate',
         'discountAvailable',
+        'totalCats',
+        'totalDogs',
         'type',
         'isPaid',
+        'isAvailable',
         'userId',
     ];
 
@@ -39,7 +43,10 @@ class Venue extends Model
         return $this->belongsTo(User::class,'id','userId');
     }
 
-
+    public function bookings()
+    {
+        return $this->hasMany(Bookings::class, 'venueId');
+    }
 
 
     public function getArrayResponse() {
@@ -48,13 +55,17 @@ class Venue extends Model
             'id'  			        =>  $this->id,
             'buisnessName'          =>  $this->buisnessName,
             'address'               =>  $this->address,
+            'postcode'              =>  $this->postcode,
             'phoneNumber' 		    =>  $this->phoneNumber,
             'buisnessDescription'   =>  $this->buisnessDescription,
             'facilities' 		    =>  $this->facilities,
-            'serviceaRate' 		    =>  $this->serviceaRate,
+            'serviceRate' 		    =>  $this->serviceRate,
             'discountAvailable' 	=>  $this->discountAvailable,
+            'totalCats' 	        =>  $this->totalCats,
+            'totalDogs' 	        =>  $this->totalDogs,
             'type' 		            =>  $this->type,
             'isPaid' 		        =>  $this->isPaid,
+            'isAvailable' 		    =>  $this->isAvailable,
             'userId' 	    	    =>  $this->userId,
                 
         ];

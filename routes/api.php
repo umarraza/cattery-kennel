@@ -31,6 +31,10 @@ Route::post('/list-customer-bookings', 'Api\CustomerController@customerBookings'
 Route::get('/list-customers', 'Api\CustomerController@listCustomers');
 Route::post('/list-new-bookings', 'Api\VenueAdminController@listNewBooking');
 
+Route::post('/search-venues', 'Api\SearchController@serachVenues');
+Route::get('/update-bookings-status', 'Api\BookingsController@updateBookings');
+
+
 
 
 

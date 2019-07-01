@@ -24,6 +24,10 @@ class Bookings extends Model
 
         'venueId',
         'customerId',
+        'noOfCats',
+        'noOfDogs',
+        'checkIn',
+        'checkOut',
         'isActive',
         'isRegistered',
         'userId'
@@ -34,6 +38,10 @@ class Bookings extends Model
         return $this->belongsTo(Customer::class, 'id');
     }
 
+    public function venue()
+    {
+        return $this->belongsTo(Venue::class, 'id');
+    }
 
     public function getArrayResponse() {
         return [
@@ -41,6 +49,10 @@ class Bookings extends Model
             'id'  	        =>   $this->id,
             'venueId'       =>   $this->venueId,
             'customerId'    =>   $this->customerId,
+            'noOfCats'      =>   $this->noOfCats,
+            'noOfDogs'      =>   $this->noOfDogs,
+            'checkIn'       =>   $this->checkIn,
+            'checkOut'      =>   $this->checkOut,
             'isActive'      =>   $this->isActive,
             'isRegistered'  =>   $this->isRegistered,
             'userId'        =>   $this->userId,

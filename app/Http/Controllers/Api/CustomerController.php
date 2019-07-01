@@ -11,6 +11,7 @@ use JWTAuth;
 
 use App\Models\Api\ApiBookings as Booking;
 use App\Models\Api\ApiCustomer as Customer;
+use App\Models\Api\ApiVenue as Venue;
 use App\Models\Api\ApiUser as User;
 
 use DB;
@@ -113,10 +114,29 @@ class CustomerController extends Controller
     
                         'venueId'       =>  $request->get('venueId'),
                         'customerId'    =>  $customer->id,  // customer id will define the number of repeat bookers
+                        'noOfCats'      =>  $request->get('noOfCats'),
+                        'noOfDogs'      =>  $request->get('noOfDogs'),
+                        'checkIn'       =>  $request->get('checkIn'),
+                        'checkOut'      =>  $request->get('checkOut'),
                         'isActive'      =>  1, 
                         'isRegistered'  =>  $request->get('isRegistered'), 
     
                     ]);
+
+                    $venue = Venue::whereId($request->venueId)->first();
+
+                    $venue->totalCats -= $request->noOfCats;
+                    $venue->totalDogs -= $request->noOfDogs;
+
+                    $venue->save();
+
+                    if($venue->totalCats == 0 && $venue->totalDogs == 0) {
+
+                        $venue = Venue::whereId($request->venueId)->update([
+                            'isAvailable' => 0,
+                        ]);
+
+                    }
 
                     DB::commit();
     
@@ -142,17 +162,36 @@ class CustomerController extends Controller
     
                         'venueId'       =>  $request->get('venueId'),
                         'customerId'    =>  $customer->id,  
+                        'noOfCats'      =>  $request->get('noOfCats'),
+                        'noOfDogs'      =>  $request->get('noOfDogs'),
+                        'checkIn'       =>  $request->get('checkIn'),
+                        'checkOut'      =>  $request->get('checkOut'),
                         'isActive'      =>  1, 
                         'isRegistered'  =>  $request->get('isRegistered'), 
                     
                     ]);
     
-                        DB::commit();
-    
-                        $response['data']['code']     =  200;
-                        $response['status']           =  true;
-                        $response['data']['result']   =  $customer;
-                        $response['data']['message']  =  'New booking created successfully';
+                    $venue = Venue::whereId($request->venueId)->first();
+
+                    $venue->totalCats -= $request->noOfCats;
+                    $venue->totalDogs -= $request->noOfDogs;
+
+                    $venue->save();
+
+                    if($venue->totalCats == 0 && $venue->totalDogs == 0) {
+
+                        $venue = Venue::whereId($request->venueId)->update([
+                            'isAvailable' => 0,
+                        ]);
+
+                    }
+
+                    DB::commit();
+
+                    $response['data']['code']     =  200;
+                    $response['status']           =  true;
+                    $response['data']['result']   =  $customer;
+                    $response['data']['message']  =  'New booking created successfully';
                 }
 
             } catch (Exception $e) {
