@@ -15,6 +15,7 @@ use App\Models\Api\ApiVenue as Venue;
 use App\Models\Api\ApiUser as User;
 
 use DB;
+use Mail;
 
 class CustomerController extends Controller
 {
@@ -183,8 +184,28 @@ class CustomerController extends Controller
                         $venue = Venue::whereId($request->venueId)->update([
                             'isAvailable' => 0,
                         ]);
-
                     }
+
+                    $customerMail = $request->get('email');
+                    $venueMail = $venue->email;
+
+                    $customerMessage = "Hi! Customer";
+
+                    Mail::send('Mails.customer', ["message" => $customerMessage], function ($customerMessage) use ($customerMail)
+                    {
+                        $customerMessage->from('umarraza2200@gmail.com', 'Catteries & Kennels');
+                        $customerMessage->to($customerMail);
+                        $customerMessage->subject("New Email From Your site");
+                    });
+
+                    $venueMessage = "Hi! Venue";
+
+                    Mail::send('Mails.venue', ["message" => $venueMessage], function ($venueMessage) use ($venueMail)
+                    {
+                        $venueMessage->from('umarraza2200@gmail.com', 'Catteries & Kennels');
+                        $venueMessage->to($venueMail);
+                        $venueMessage->subject("New Email From Your site");
+                    });
 
                     DB::commit();
 

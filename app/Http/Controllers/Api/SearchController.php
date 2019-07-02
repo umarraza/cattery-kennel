@@ -15,9 +15,7 @@ use App\Models\Api\ApiCustomer as Customer;
 use App\Models\Api\ApiUser as User;
 use App\Models\Api\ApiVenue as Venue;
 
-
 use DB;
-
 
 class SearchController extends Controller
 {

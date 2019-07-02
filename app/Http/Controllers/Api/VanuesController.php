@@ -32,6 +32,7 @@ class VanuesController extends Controller
         $rules = [
 
             'buisnessName'         =>   'required',
+            'email'                =>   'required',
             'address'              =>   'required',   
             'phoneNumber'          =>   'required',
             'buisnessDescription'  =>   'required',

@@ -22,6 +22,7 @@ class Venue extends Model
      */
     protected $fillable = [
         'buisnessName',
+        'email',
         'address',
         'postcode',
         'phoneNumber',
@@ -54,6 +55,7 @@ class Venue extends Model
 
             'id'  			        =>  $this->id,
             'buisnessName'          =>  $this->buisnessName,
+            'email'                 =>  $this->email,
             'address'               =>  $this->address,
             'postcode'              =>  $this->postcode,
             'phoneNumber' 		    =>  $this->phoneNumber,

@@ -33,6 +33,9 @@ Route::post('/list-new-bookings', 'Api\VenueAdminController@listNewBooking');
 
 Route::post('/search-venues', 'Api\SearchController@serachVenues');
 Route::get('/update-bookings-status', 'Api\BookingsController@updateBookings');
+Route::post('/list-venue-bookings', 'Api\BookingsController@listVenueBookings');
+Route::get('/list-repeat-bookers', 'Api\BookingsController@repeatBookers');
+
 
 
 
