@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2019 at 03:05 PM
+-- Generation Time: Jul 03, 2019 at 03:18 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -47,10 +47,17 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `venueId`, `customerId`, `noOfCats`, `noOfDogs`, `checkIn`, `checkOut`, `isActive`, `isRegistered`, `createdAt`, `updatedAt`) VALUES
-(15, 3, 22, 5, 5, '2019-07-01 19:00:00', '2019-07-02 19:00:00', 1, 1, '2019-07-01 00:06:06', '2019-07-01 00:06:06'),
-(16, 3, 22, 3, 3, '2019-07-01 19:00:00', '2019-07-01 19:00:00', 1, 1, '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
-(26, 4, 17, 5, 5, '2019-06-29 19:00:00', '2019-06-30 19:00:00', 1, 1, '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
-(33, 4, 17, 7, 2, '2019-06-27 19:00:00', '2019-06-30 19:00:00', 1, 1, '2019-07-01 07:26:32', '2019-07-01 07:26:32');
+(15, 3, 22, 5, 5, '2019-07-03 19:00:00', '2019-07-10 19:00:00', 1, 1, '2019-07-01 00:06:06', '2019-07-01 00:06:06'),
+(16, 3, 22, 3, 3, '2019-07-01 19:00:00', '2019-07-04 19:00:00', 1, 1, '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
+(26, 4, 23, 5, 5, '2019-07-07 19:00:00', '2019-07-15 19:00:00', 1, 1, '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
+(33, 4, 23, 7, 2, '2019-06-27 19:00:00', '2019-06-30 19:00:00', 1, 1, '2019-07-01 07:26:32', '2019-07-01 07:26:32'),
+(35, 4, 42, 10, 5, '2019-07-09 19:00:00', '2019-07-14 19:00:00', 1, 0, '2019-07-03 01:17:06', '2019-07-03 01:17:06'),
+(36, 4, 43, 2, 3, '2019-07-12 19:00:00', '2019-07-16 19:00:00', 1, 0, '2019-07-03 01:18:00', '2019-07-03 01:18:00'),
+(37, 4, 44, 1, 1, '2019-07-11 19:00:00', '2019-07-15 19:00:00', 1, 0, '2019-07-03 01:18:41', '2019-07-03 01:18:41'),
+(38, 3, 45, 2, 2, '2019-07-10 19:00:00', '2019-07-19 19:00:00', 1, 0, '2019-07-03 01:19:29', '2019-07-03 01:19:29'),
+(39, 3, 46, 3, 5, '2019-07-14 19:00:00', '2019-07-22 19:00:00', 1, 1, '2019-07-03 01:20:52', '2019-07-03 01:20:52'),
+(40, 3, 47, 3, 5, '2019-06-28 19:00:00', '2019-07-05 19:00:00', 1, 1, '2019-07-03 05:36:04', '2019-07-03 05:36:04'),
+(41, 3, 48, 3, 5, '2019-06-23 19:00:00', '2019-07-04 19:00:00', 1, 1, '2019-07-03 05:37:38', '2019-07-03 05:37:38');
 
 -- --------------------------------------------------------
 
@@ -65,7 +72,6 @@ CREATE TABLE `cattery_images` (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
--- Error reading data for table cattery&kennels.cattery_images: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `cattery&amp;kennels`.`cattery_images`' at line 1
 
 -- --------------------------------------------------------
 
@@ -93,15 +99,15 @@ CREATE TABLE `customers` (
 INSERT INTO `customers` (`id`, `bookerName`, `email`, `address`, `phoneNumber`, `pets`, `requirements`, `userId`, `createdAt`, `updatedAt`) VALUES
 (22, 'Kamran Khan', 'kamran120@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 37, '2019-07-01 00:06:06', '2019-07-01 00:06:06'),
 (23, 'Akmal Mushtaq', 'akmal120@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 38, '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
-(24, 'Mujtaba Rehman', 'mujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 40, '2019-07-01 07:01:23', '2019-07-01 07:01:23'),
-(25, 'Mujtaba Rehman', 'mujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 41, '2019-07-01 07:02:45', '2019-07-01 07:02:45'),
-(30, 'Mujtaba Rehman', 'mujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 46, '2019-07-01 07:05:18', '2019-07-01 07:05:18'),
-(32, 'Mujtaba Rehman', 'mujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 48, '2019-07-01 07:07:10', '2019-07-01 07:07:10'),
 (33, 'Mujtaba Rehman', 'mujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 49, '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
-(34, 'Malik Hamza', 'malikhamza@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 50, '2019-07-01 07:19:28', '2019-07-01 07:19:28'),
-(36, 'Malik Hamza', 'malikhamza@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 52, '2019-07-01 07:22:02', '2019-07-01 07:22:02'),
-(38, 'Malik Hamza', 'malikhamza@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 54, '2019-07-01 07:23:53', '2019-07-01 07:23:53'),
-(40, 'Malik Hamza', 'malikhamza@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 56, '2019-07-01 07:26:32', '2019-07-01 07:26:32');
+(40, 'Malik Hamza', 'malikhamza@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 56, '2019-07-01 07:26:32', '2019-07-01 07:26:32'),
+(42, 'angel', 'angel@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', NULL, '2019-07-03 01:17:06', '2019-07-03 01:17:06'),
+(43, 'baby', 'babyl@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', NULL, '2019-07-03 01:18:00', '2019-07-03 01:18:00'),
+(44, 'Hippophobia', 'hippophobia@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', NULL, '2019-07-03 01:18:41', '2019-07-03 01:18:41'),
+(45, 'Iwantamaste', 'lwantamaste@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', NULL, '2019-07-03 01:19:29', '2019-07-03 01:19:29'),
+(46, 'Breacche', 'breacche@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 57, '2019-07-03 01:20:52', '2019-07-03 01:20:52'),
+(47, 'johncena', 'johncena@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 58, '2019-07-03 05:36:04', '2019-07-03 05:36:04'),
+(48, 'romanriengs', 'romanriengs@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 59, '2019-07-03 05:37:38', '2019-07-03 05:37:38');
 
 -- --------------------------------------------------------
 
@@ -163,7 +169,10 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `remember_token`, `r
 (38, 'akmal2200', 'akmal120@gmail.com', '$2y$10$lQiVJF9ZHNdyRNzp//yqO.wgxRNlyYDlR4Fgleoy9qWDpfafeu0de', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
 (39, 'shaheenkhan', 'shaheenkhan@gmail.com', '$2y$10$xA.Iy3eIia9VpXV0fgOnSOxePQvRFm4JuWsphKJJdbtblFT0.V6SC', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 01:42:12', '2019-07-01 01:42:12'),
 (49, 'mujtaba', 'mujtaba@gmail.com', '$2y$10$1cb8l3inMUoCA.El511Pz.2cogeOC2wlkmtds61wTGnPxJbR9LhZi', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
-(56, 'malikhamza', 'malikhamza@gmail.com', '$2y$10$8YDQqyUig6H7AkGvHiU.WumbLyxjfkc5hwGLUzii5s.WSNU2ZDE..', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 07:26:32', '2019-07-01 07:26:32');
+(56, 'malikhamza', 'malikhamza@gmail.com', '$2y$10$8YDQqyUig6H7AkGvHiU.WumbLyxjfkc5hwGLUzii5s.WSNU2ZDE..', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 07:26:32', '2019-07-01 07:26:32'),
+(57, 'baby', 'breacche@gmail.com', '$2y$10$cNC2DGh71xlBdj3H9g6VJuz2oarnKTLf4Ag2SaFNnpdUQZPmfCOAa', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-03 01:20:52', '2019-07-03 01:20:52'),
+(58, 'johncena', 'johncena@gmail.com', '$2y$10$K1Xa/QhKbJxZ2p9aUVSvPuo2pm6a99lkWhzDw6BXOc8Jdk19RWIQe', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-03 05:36:04', '2019-07-03 05:36:04'),
+(59, 'romanriengs', 'romanriengs@gmail.com', '$2y$10$o/nzqPvIwnbV5QSreRIYEODRhXk.CBrufp88cL0hMbkUqDWJp6kxa', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-03 05:37:38', '2019-07-03 05:37:38');
 
 -- --------------------------------------------------------
 
@@ -197,8 +206,8 @@ CREATE TABLE `venues` (
 --
 
 INSERT INTO `venues` (`id`, `buisnessName`, `email`, `address`, `postcode`, `phoneNumber`, `buisnessDescription`, `facilities`, `serviceRate`, `discountAvailable`, `totalCats`, `totalDogs`, `type`, `isPaid`, `isAvailable`, `userId`, `createdAt`, `updatedAt`) VALUES
-(3, 'Cattery', 'shahidmalik@gmail.com', 'Lahore, Pakistan', 53720, '03034969407', 'Some Description about the buisness of cattery and kennel', 'some facilities', '2500', '50%', 20, 20, 'kennel', '8.25GBP+VAT', 1, 16, '2019-07-01 00:03:15', '2019-07-01 00:03:15'),
-(4, 'Cattery', 'shaheenkhan@gmail.com', 'Karachi, Pakistan', 45231, '03218840489', 'Some Description about the buisness of cattery and kennel', 'some facilities', '1500', '50%', 0, 0, 'kennel', '8.25GBP+VAT', 0, 39, '2019-07-01 01:44:40', '2019-07-01 07:26:32');
+(3, 'Cattery', 'shahidmalik@gmail.com', 'Lahore, Pakistan', 53720, '03034969407', 'Some Description about the buisness of cattery and kennel', 'some facilities', '2500', '50%', 9, 3, 'kennel', '8.25GBP+VAT', 1, 16, '2019-07-01 00:03:15', '2019-07-03 05:37:38'),
+(4, 'Cattery', 'shaheenkhan@gmail.com', 'Karachi, Pakistan', 45231, '03218840489', 'Some Description about the buisness of cattery and kennel', 'some facilities', '1500', '50%', -13, -9, 'kennel', '8.25GBP+VAT', 0, 39, '2019-07-01 01:44:40', '2019-07-03 01:18:41');
 
 --
 -- Indexes for dumped tables
@@ -248,7 +257,7 @@ ALTER TABLE `venues`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `cattery_images`
@@ -260,7 +269,7 @@ ALTER TABLE `cattery_images`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -272,7 +281,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `venues`
