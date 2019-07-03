@@ -189,23 +189,23 @@ class CustomerController extends Controller
                     $customerMail = $request->get('email');
                     $venueMail = $venue->email;
 
-                    $customerMessage = "Hi! Customer";
+                    // $customerMessage = "Hi! Customer";
 
-                    Mail::send('Mails.customer', ["message" => $customerMessage], function ($customerMessage) use ($customerMail)
-                    {
-                        $customerMessage->from('umarraza2200@gmail.com', 'Catteries & Kennels');
-                        $customerMessage->to($customerMail);
-                        $customerMessage->subject("New Email From Your site");
-                    });
+                    // Mail::send('Mails.customer', ["message" => $customerMessage], function ($customerMessage) use ($customerMail)
+                    // {
+                    //     $customerMessage->from('umarraza2200@gmail.com', 'Catteries & Kennels');
+                    //     $customerMessage->to($customerMail);
+                    //     $customerMessage->subject("New Email From Your site");
+                    // });
 
-                    $venueMessage = "Hi! Venue";
+                    // $venueMessage = "Hi! Venue";
 
-                    Mail::send('Mails.venue', ["message" => $venueMessage], function ($venueMessage) use ($venueMail)
-                    {
-                        $venueMessage->from('umarraza2200@gmail.com', 'Catteries & Kennels');
-                        $venueMessage->to($venueMail);
-                        $venueMessage->subject("New Email From Your site");
-                    });
+                    // Mail::send('Mails.venue', ["message" => $venueMessage], function ($venueMessage) use ($venueMail)
+                    // {
+                    //     $venueMessage->from('umarraza2200@gmail.com', 'Catteries & Kennels');
+                    //     $venueMessage->to($venueMail);
+                    //     $venueMessage->subject("New Email From Your site");
+                    // });
 
                     DB::commit();
 
