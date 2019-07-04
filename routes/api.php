@@ -31,6 +31,8 @@ Route::post('/create-cattery-image', 'Api\CatteryImagesController@createImages')
 Route::post('/list-customer-bookings', 'Api\CustomerController@customerBookings');
 Route::get('/list-customers', 'Api\CustomerController@listCustomers');
 Route::post('/new-customer', 'Api\CustomerController@newCustomer');
+Route::post('/new-pet', 'Api\PetsController@newPet');
+
 
 // Booking Routes
 Route::post('/new-booking', 'Api\BookingsController@newBooking');
@@ -43,7 +45,7 @@ Route::get('/peak-dates-booked', 'Api\AdminController@peakDatesBooked');
 Route::get('/customer-pets', 'Api\AdminController@noOfcustomerPets');
 
 // Search Routes
-Route::post('/search-venues', 'Api\SearchController@noOfcustomerPets');
+Route::post('/search-venues', 'Api\SearchController@serachVenues');
 
 
 

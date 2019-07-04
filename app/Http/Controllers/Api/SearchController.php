@@ -40,8 +40,8 @@ class SearchController extends Controller
             
             try {
 
-                $clientCats = $request->get('clientCats');
-                $clientDogs = $request->get('clientDogs');
+                $noOfCats = $request->get('noOfCats');
+                $noOfDogs = $request->get('noOfDogs');
                 $checkIn = $request->get('checkIn');
                 $checkOut = $request->get('checkOut');
                 $location = $request->get('location');
@@ -56,38 +56,29 @@ class SearchController extends Controller
 
 
                 if (isset($postcode)) {
-
                     $venues = Venue::whereIsavailable(1)
-                    
-                    ->where('postcode', $postcode)
-                    ->orderBy('serviceRate', 'asc')
-                    ->get();
-
+                        ->where('postcode', $postcode)
+                        ->orderBy('serviceRate', 'asc')
+                        ->get();
                     $ids = $venues->pluck('id');
-                    
                     $bookings = Booking::whereIn('venueId', $ids)
                         ->whereCheckin($checkIn)
                         ->whereCheckout($checkOut)
                        // ->whereNotBetween('checkIn', [$checkIn,$checkOut])
                         ->whereIsactive(1)
                     ->get();
-
                     $listVenues = [];
-
                     foreach ($venues as $venue) {
-
                         $totalCats = $venue->totalCats;
                         $totalDogs = $venue->totalDogs;
-
-                        if ($totalCats > $clientCats && $totalDogs > $clientDogs) {
-
+                        if ($totalCats > $noOfCats && $totalDogs > $noOfDogs) {
                             $listVenues[] = $venue;
                         }
                     }
 
                     $response['data']['code']       =  200;
                     $response['data']['message']    =  'Request Successfull';
-                    $response['data']['result']     =  $venues;
+                    $response['data']['result']     =  $listVenues;
                     $response['status']             =  true;
 
                 } else {
@@ -114,7 +105,7 @@ class SearchController extends Controller
                     $totalCats = $venue->totalCats;
                     $totalDogs = $venue->totalDogs;
 
-                    if ($totalCats > $clientCats && $totalDogs > $clientDogs) {
+                    if ($totalCats > $noOfCats && $totalDogs > $noOfDogs) {
 
                         $listVenues[] = $venue;
                     }

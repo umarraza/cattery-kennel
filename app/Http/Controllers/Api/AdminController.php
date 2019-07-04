@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use JWTAuthException;
 use JWTAuth;
 
+use App\Models\Api\ApiPeakDate as PeakDate;
 use App\Models\Api\ApiCustomer as Customer;
 use App\Models\Api\ApiBookings as Booking;
 use App\Models\Api\ApiVenue as Venue;
@@ -97,6 +98,8 @@ class AdminController extends Controller
                'status' => false
             ];
             
+            DB::beginTransaction();
+
             try {
 
                 $collection = Booking::all();
@@ -119,44 +122,43 @@ class AdminController extends Controller
                 }
 
                 $results = array_count_values($array);
+
                 $new_array2[] = 0;
                 $new_array3 = [];
+
                 foreach ($results as $key => $value) {
 
                     if ($value >= 3 && $value >= max($new_array2)) {
 
+                        $new_array3[] = $key;
+                        $date_key = $key;
+                        $occurence = $value;
                         $new_array2[] = $value;
-                        $new_array3[] = $key." => ". $value ." Times";
+
+                        $date = PeakDate::create([
+                            "date" => $date_key,
+                            "occurence" => $occurence
+                        ]);
                     }
                 }
 
-                $reversed_array = array_reverse($new_array3);
+                $peakDates = PeakDate::select('date', 'occurence')->get();
+                $array_data = json_decode($peakDates);
+                $reversed_array = array_reverse($array_data);
+                $count = count($reversed_array);
 
-                // return $reversed_array;
+                $sameDates = [];
 
-                $dates_data = [];
-                $times_data = [];
+                // return $peakDates;
 
-                foreach ($reversed_array as $value) {
+                for ($i = 0; $i < $count; $i++) {
 
-                    $data =  explode(' => ', $value);
-                    $date_key = $data[0];
-                    $val2 = $data[1];
-                    $trimTimes = explode(' ', $val2);
-                    $time_value = $trimTimes[0];
-                    // return $time_value;
-
-                    $dates_data[] = $date_key;
-                    $times_data[] = (int)$time_value;
-
-                    // create new table in db and store these fucking dates in that table and retrieve them latter.
+                    $sameDates[] = PeakDate::whereOccurence($peakDates[$i]->occurence)
+                    ->select('date', 'occurence')->get();
 
                 }
 
-                return array_merge($dates_data, $times_data);
-
-                return $times_data;
-                // number of repeat wise show dates
+                DB::commit();
 
                 $response['data']['code']       =  200;
                 $response['data']['message']    =  'Request Successfull';
@@ -165,6 +167,7 @@ class AdminController extends Controller
 
             } catch (Exception $e) {
 
+                DB::rollBack();
                 throw $e;
             }
         }
@@ -195,19 +198,11 @@ class AdminController extends Controller
             
             try {
 
-                $customersIds = Customer::all()->pluck('id');
-
-                $bookings = Booking::whereIn('customerId', $customersIds)->get();
-
-                return $bookings;
-
-                return $bookings;
-
-
+                $customers = Customer::with('bookings')->get();
 
                 $response['data']['code']       =  200;
                 $response['data']['message']    =  'Request Successfull';
-                $response['data']['result']     =  $reversed_array;
+                $response['data']['result']     =  $customers;
                 $response['status']             =  true;
 
             } catch (Exception $e) {

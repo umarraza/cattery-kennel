@@ -17,7 +17,6 @@ class Customer extends Model
         'email',
         'address',
         'phoneNumber',
-        'pets',
         'requirements',
         'userId'
     ];
@@ -26,7 +25,6 @@ class Customer extends Model
     {
         return $this->hasMany(Bookings::class, 'customerId');
     }
-
 
     public function getArrayResponse() {
         
@@ -37,7 +35,6 @@ class Customer extends Model
             'email'         =>  $this->email,
             'address'       =>  $this->address,
             'phoneNumber'   =>  $this->phoneNumber,
-            'pets'          =>  $this->pets,
             'requirements'  =>  $this->requirements,
             'userId'        =>  $this->userId,
 

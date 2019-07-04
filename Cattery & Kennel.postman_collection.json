@@ -23,7 +23,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "shaheenkhan",
+							"value": "shahidmalik",
 							"type": "text"
 						},
 						{
@@ -38,19 +38,19 @@
 						},
 						{
 							"key": "email",
-							"value": "shaheenkhan@gmail.com",
+							"value": "shahidmalik@gmail.com",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://192.168.10.21/cattery-kennel/api/signup",
+					"raw": "http://192.168.10.51/cattery-kennel/api/signup",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"10",
-						"21"
+						"51"
 					],
 					"path": [
 						"cattery-kennel",
@@ -601,13 +601,13 @@
 					]
 				},
 				"url": {
-					"raw": "http://192.168.10.31/cattery-kennel/api/list-venue-bookings?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM5LCJpc3MiOiJodHRwOi8vMTkyLjE2OC4xMC4zMS9jYXR0ZXJ5LWtlbm5lbC9hcGkvbG9naW4iLCJpYXQiOjE1NjIwNjEyNTAsImV4cCI6MTU2MzI3MDg1MCwibmJmIjoxNTYyMDYxMjUwLCJqdGkiOiJ0WWd0UFJSTHd5amxCR3lFIn0.oe2A38xhK1rYBNUaQNouKx_tbuE3XwDIhPhrhrMhlDU",
+					"raw": "http://192.168.10.51/cattery-kennel/api/list-venue-bookings?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM5LCJpc3MiOiJodHRwOi8vMTkyLjE2OC4xMC4zMS9jYXR0ZXJ5LWtlbm5lbC9hcGkvbG9naW4iLCJpYXQiOjE1NjIwNjEyNTAsImV4cCI6MTU2MzI3MDg1MCwibmJmIjoxNTYyMDYxMjUwLCJqdGkiOiJ0WWd0UFJSTHd5amxCR3lFIn0.oe2A38xhK1rYBNUaQNouKx_tbuE3XwDIhPhrhrMhlDU",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"10",
-						"31"
+						"51"
 					],
 					"path": [
 						"cattery-kennel",
@@ -699,13 +699,13 @@
 					]
 				},
 				"url": {
-					"raw": "http://192.168.10.38/cattery-kennel/api/peak-dates-booked?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMxL2NhdHRlcnkta2VubmVsL2FwaS9sb2dpbiIsImlhdCI6MTU2MjA2Njk5OSwiZXhwIjoxNTYzMjc2NTk5LCJuYmYiOjE1NjIwNjY5OTksImp0aSI6ImRGNTJGSnY5SXkyZ3IwdXYifQ.yTGv2w75p5TOljPlqH5655ZT9ZgYVzd_bZBF7woRLCw",
+					"raw": "http://192.168.10.51/cattery-kennel/api/peak-dates-booked?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMxL2NhdHRlcnkta2VubmVsL2FwaS9sb2dpbiIsImlhdCI6MTU2MjA2Njk5OSwiZXhwIjoxNTYzMjc2NTk5LCJuYmYiOjE1NjIwNjY5OTksImp0aSI6ImRGNTJGSnY5SXkyZ3IwdXYifQ.yTGv2w75p5TOljPlqH5655ZT9ZgYVzd_bZBF7woRLCw",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"10",
-						"38"
+						"51"
 					],
 					"path": [
 						"cattery-kennel",
@@ -739,33 +739,82 @@
 				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id",
-							"value": "3",
-							"type": "text"
-						}
-					]
+					"formdata": []
 				},
 				"url": {
-					"raw": "http://192.168.10.38/cattery-kennel/api/peak-dates-booked?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMxL2NhdHRlcnkta2VubmVsL2FwaS9sb2dpbiIsImlhdCI6MTU2MjA2Njk5OSwiZXhwIjoxNTYzMjc2NTk5LCJuYmYiOjE1NjIwNjY5OTksImp0aSI6ImRGNTJGSnY5SXkyZ3IwdXYifQ.yTGv2w75p5TOljPlqH5655ZT9ZgYVzd_bZBF7woRLCw",
+					"raw": "http://192.168.10.51/cattery-kennel/api/customer-pets?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMxL2NhdHRlcnkta2VubmVsL2FwaS9sb2dpbiIsImlhdCI6MTU2MjA2Njk5OSwiZXhwIjoxNTYzMjc2NTk5LCJuYmYiOjE1NjIwNjY5OTksImp0aSI6ImRGNTJGSnY5SXkyZ3IwdXYifQ.yTGv2w75p5TOljPlqH5655ZT9ZgYVzd_bZBF7woRLCw",
 					"protocol": "http",
 					"host": [
 						"192",
 						"168",
 						"10",
-						"38"
+						"51"
 					],
 					"path": [
 						"cattery-kennel",
 						"api",
-						"peak-dates-booked"
+						"customer-pets"
 					],
 					"query": [
 						{
 							"key": "token",
 							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEwLjMxL2NhdHRlcnkta2VubmVsL2FwaS9sb2dpbiIsImlhdCI6MTU2MjA2Njk5OSwiZXhwIjoxNTYzMjc2NTk5LCJuYmYiOjE1NjIwNjY5OTksImp0aSI6ImRGNTJGSnY5SXkyZ3IwdXYifQ.yTGv2w75p5TOljPlqH5655ZT9ZgYVzd_bZBF7woRLCw"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Pet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "catName",
+							"value": "romanriengs",
+							"type": "text"
+						},
+						{
+							"key": "dogName",
+							"value": "Lahore, Pakistan",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "03034969407",
+							"type": "text"
+						},
+						{
+							"key": "pets",
+							"value": "[\n            {\n                \"date\": \"2019-07-15 00:00:00\",\n                \"occurence\": 6\n            },\n            {\n                \"date\": \"2019-07-14 00:00:00\",\n                \"occurence\": 5\n            },\n            {\n                \"date\": \"2019-07-13 00:00:00\",\n                \"occurence\": 5\n            },\n            {\n                \"date\": \"2019-07-12 00:00:00\",\n                \"occurence\": 4\n            },\n            {\n                \"date\": \"2019-07-11 00:00:00\",\n                \"occurence\": 4\n            },\n            {\n                \"date\": \"2019-07-05 00:00:00\",\n                \"occurence\": 4\n            },\n            {\n                \"date\": \"2019-07-04 00:00:00\",\n                \"occurence\": 4\n            }\n        ]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.10.51/cattery-kennel/api/new-customer",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"10",
+						"51"
+					],
+					"path": [
+						"cattery-kennel",
+						"api",
+						"new-customer"
 					]
 				}
 			},

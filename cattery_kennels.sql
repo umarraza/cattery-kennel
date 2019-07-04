@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2019 at 03:18 PM
+-- Generation Time: Jul 04, 2019 at 03:05 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -85,7 +85,6 @@ CREATE TABLE `customers` (
   `email` varchar(50) NOT NULL,
   `address` varchar(100) NOT NULL,
   `phoneNumber` varchar(50) NOT NULL,
-  `pets` varchar(2000) NOT NULL,
   `requirements` varchar(200) NOT NULL,
   `userId` int(10) DEFAULT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -96,18 +95,71 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `bookerName`, `email`, `address`, `phoneNumber`, `pets`, `requirements`, `userId`, `createdAt`, `updatedAt`) VALUES
-(22, 'Kamran Khan', 'kamran120@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 37, '2019-07-01 00:06:06', '2019-07-01 00:06:06'),
-(23, 'Akmal Mushtaq', 'akmal120@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 38, '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
-(33, 'Mujtaba Rehman', 'mujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 49, '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
-(40, 'Malik Hamza', 'malikhamza@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 56, '2019-07-01 07:26:32', '2019-07-01 07:26:32'),
-(42, 'angel', 'angel@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', NULL, '2019-07-03 01:17:06', '2019-07-03 01:17:06'),
-(43, 'baby', 'babyl@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', NULL, '2019-07-03 01:18:00', '2019-07-03 01:18:00'),
-(44, 'Hippophobia', 'hippophobia@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', NULL, '2019-07-03 01:18:41', '2019-07-03 01:18:41'),
-(45, 'Iwantamaste', 'lwantamaste@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', NULL, '2019-07-03 01:19:29', '2019-07-03 01:19:29'),
-(46, 'Breacche', 'breacche@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 57, '2019-07-03 01:20:52', '2019-07-03 01:20:52'),
-(47, 'johncena', 'johncena@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 58, '2019-07-03 05:36:04', '2019-07-03 05:36:04'),
-(48, 'romanriengs', 'romanriengs@gmail.com', 'Lahore, Pakistan', '03034969407', 'Sandy', 'Some requirements', 59, '2019-07-03 05:37:38', '2019-07-03 05:37:38');
+INSERT INTO `customers` (`id`, `bookerName`, `email`, `address`, `phoneNumber`, `requirements`, `userId`, `createdAt`, `updatedAt`) VALUES
+(22, 'Kamran Khan', 'kamran120@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 37, '2019-07-01 00:06:06', '2019-07-01 00:06:06'),
+(23, 'Akmal Mushtaq', 'akmal120@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 38, '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
+(33, 'Mujtaba Rehman', 'mujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 49, '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
+(40, 'Malik Hamza', 'malikhamza@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 56, '2019-07-01 07:26:32', '2019-07-01 07:26:32'),
+(42, 'angel', 'angel@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-03 01:17:06', '2019-07-03 01:17:06'),
+(43, 'baby', 'babyl@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-03 01:18:00', '2019-07-03 01:18:00'),
+(44, 'Hippophobia', 'hippophobia@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-03 01:18:41', '2019-07-03 01:18:41'),
+(45, 'Iwantamaste', 'lwantamaste@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-03 01:19:29', '2019-07-03 01:19:29'),
+(46, 'Breacche', 'breacche@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 57, '2019-07-03 01:20:52', '2019-07-03 01:20:52'),
+(47, 'johncena', 'johncena@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 58, '2019-07-03 05:36:04', '2019-07-03 05:36:04'),
+(48, 'romanriengs', 'romanriengs@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 59, '2019-07-03 05:37:38', '2019-07-03 05:37:38');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_pets`
+--
+
+CREATE TABLE `customer_pets` (
+  `id` int(11) NOT NULL,
+  `catName` varchar(50) DEFAULT NULL,
+  `dogName` varchar(50) DEFAULT NULL,
+  `dateOfBirth` varchar(50) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `customerId` int(10) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer_pets`
+--
+
+INSERT INTO `customer_pets` (`id`, `catName`, `dogName`, `dateOfBirth`, `image`, `customerId`, `createdAt`, `updatedAt`) VALUES
+(1, 'Sandy', NULL, '2-05-2019', 'image_1562237867.jpeg', 22, '2019-07-04 05:57:47', '2019-07-04 05:57:47'),
+(2, 'Sandy', NULL, '2-05-2019', 'image_1562237913.jpeg', 22, '2019-07-04 05:58:33', '2019-07-04 05:58:33'),
+(3, NULL, 'Hardy', '2-05-2019', 'image_1562238040.jpeg', 22, '2019-07-04 06:00:40', '2019-07-04 06:00:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `peak_dates`
+--
+
+CREATE TABLE `peak_dates` (
+  `id` int(10) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `occurence` int(10) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `peak_dates`
+--
+
+INSERT INTO `peak_dates` (`id`, `date`, `occurence`, `createdAt`, `updatedAt`) VALUES
+(1, '2019-07-03 19:00:00', 4, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
+(2, '2019-07-04 19:00:00', 4, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
+(3, '2019-07-10 19:00:00', 4, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
+(4, '2019-07-11 19:00:00', 4, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
+(5, '2019-07-12 19:00:00', 5, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
+(6, '2019-07-13 19:00:00', 5, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
+(7, '2019-07-14 19:00:00', 6, '2019-07-04 02:58:13', '2019-07-04 02:58:13');
 
 -- --------------------------------------------------------
 
@@ -232,6 +284,18 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `customer_pets`
+--
+ALTER TABLE `customer_pets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `peak_dates`
+--
+ALTER TABLE `peak_dates`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -270,6 +334,18 @@ ALTER TABLE `cattery_images`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `customer_pets`
+--
+ALTER TABLE `customer_pets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `peak_dates`
+--
+ALTER TABLE `peak_dates`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `roles`

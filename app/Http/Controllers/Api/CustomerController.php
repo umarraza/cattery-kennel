@@ -13,6 +13,8 @@ use App\Models\Api\ApiBookings as Booking;
 use App\Models\Api\ApiCustomer as Customer;
 use App\Models\Api\ApiVenue as Venue;
 use App\Models\Api\ApiUser as User;
+use App\Models\Api\ApiCustomerPets as CustomerPets;
+
 
 use DB;
 use Mail;
@@ -36,7 +38,6 @@ class CustomerController extends Controller
             // 'email'         =>   'required|unique:customers',
             'address'       =>   'required',   
             'phoneNumber'   =>   'required',
-            'pets'          =>   'required',
             'requirements'  =>   'required',
 
         ];
@@ -86,12 +87,13 @@ class CustomerController extends Controller
                         'email'         =>  $request->get('email'),
                         'address'       =>  $request->get('address'),
                         'phoneNumber'   =>  $request->get('phoneNumber'),
-                        'pets'          =>  $request->get('pets'),              // There should be a seprate table for creating catteries and kennels
                         'requirements'  =>  $request->get('requirements'),
                         'userId'        =>  $userId,
     
                     ]);
     
+                    $pets = $request->get('pets');
+
 
                     /*
 
@@ -154,7 +156,6 @@ class CustomerController extends Controller
                         'email'         =>  $request->get('email'),
                         'address'       =>  $request->get('address'),
                         'phoneNumber'   =>  $request->get('phoneNumber'),
-                        'pets'          =>  $request->get('pets'), 
                         'requirements'  =>  $request->get('requirements'),
 
                     ]);
