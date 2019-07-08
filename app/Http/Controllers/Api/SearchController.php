@@ -47,33 +47,33 @@ class SearchController extends Controller
                 $location = $request->get('location');
                 $postcode = $request->get('postcode');
 
-                // $checkBookings = Booking::whereBetween('checkIn', [$checkIn,$checkOut])->whereIsactive(1)->get();
-                // $checkBookings = Booking::has('customer')->get();
-
-                // get venues that are available for booking
-                // rating could be add in future
-                // ->orWhere('postcode', $postcode)
-
-
                 if (isset($postcode)) {
-                    $venues = Venue::whereIsavailable(1)
-                        ->where('postcode', $postcode)
-                        ->orderBy('serviceRate', 'asc')
-                        ->get();
-                    $ids = $venues->pluck('id');
-                    $bookings = Booking::whereIn('venueId', $ids)
-                        ->whereCheckin($checkIn)
+
+                    $bookings = Booking::whereCheckin($checkIn)
                         ->whereCheckout($checkOut)
-                       // ->whereNotBetween('checkIn', [$checkIn,$checkOut])
                         ->whereIsactive(1)
                     ->get();
+
+                    $venueIds = $bookings->pluck('venueId');
+
+                    $venues = Venue::whereIn('id', $venueIds)
+                        ->whereIsavailable(1)
+                        ->wherePostcode($postcode)
+                        ->orderBy('serviceRate', 'asc')
+                        ->get();
+                    
                     $listVenues = [];
+
                     foreach ($venues as $venue) {
+
                         $totalCats = $venue->totalCats;
                         $totalDogs = $venue->totalDogs;
+
                         if ($totalCats > $noOfCats && $totalDogs > $noOfDogs) {
                             $listVenues[] = $venue;
                         }
+                        
+                        $venue = $venue->images;
                     }
 
                     $response['data']['code']       =  200;
@@ -83,20 +83,18 @@ class SearchController extends Controller
 
                 } else {
 
-                    $venues = Venue::whereIsavailable(1)
-                    
-                    ->where('address', 'like', '%' . $location . '%')
-                    ->orderBy('serviceRate', 'asc')
+                    $bookings = Booking::whereCheckin($checkIn)
+                        ->whereCheckout($checkOut)
+                        ->whereIsactive(1)
                     ->get();
 
-                $ids = $venues->pluck('id');
-                
-                $bookings = Booking::whereIn('venueId', $ids)
-                    ->whereCheckin($checkIn)
-                    ->whereCheckout($checkOut)
-                    // ->whereNotBetween('checkIn', [$checkIn,$checkOut])
-                    ->whereIsactive(1)
-                ->get();
+                    $venueIds = $bookings->pluck('venueId');
+
+                    $venues = Venue::whereIn('id', $venueIds)
+                        ->whereIsavailable(1)
+                        ->where('address', 'like', '%' . $location . '%')
+                        ->orderBy('serviceRate', 'asc')
+                    ->get();
 
                 $listVenues = [];
 
@@ -108,13 +106,14 @@ class SearchController extends Controller
                     if ($totalCats > $noOfCats && $totalDogs > $noOfDogs) {
 
                         $listVenues[] = $venue;
+                        $venue = $venue->images;
                     }
                 }
-
                     $response['data']['code']       =  200;
                     $response['data']['message']    =  'Request Successfull';
                     $response['data']['result']     =  $venues;
                     $response['status']             =  true;
+                    
                 }
     
             } catch (Exception $e) {

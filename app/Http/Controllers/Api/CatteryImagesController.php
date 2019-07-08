@@ -31,7 +31,7 @@ class CatteryImagesController extends Controller
             ],
             'status' => false
         ];
-        if(!empty($user) && $user->isSupplier())
+        if(!empty($user) && $user->isVenue())
         {
             $response = [
                 'data' => [
@@ -42,8 +42,8 @@ class CatteryImagesController extends Controller
             ];
             $rules = [
 
-                'base64ImageData'   =>  'required',
-                'supplierId'        =>  'required',
+                'base64ImageData' => 'required',
+                'venueId' => 'required',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -76,7 +76,8 @@ class CatteryImagesController extends Controller
                         $image = CatteryImages::create([
 
                             'imageName'  => $file_name,
-                            'supplierId'=> $request->get('supplierId'),
+                            'isProfile' => $request->get('isProfile'),
+                            'venueId'=> $request->get('venueId'),
     
                         ]);
 

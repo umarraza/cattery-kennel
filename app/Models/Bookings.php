@@ -40,7 +40,7 @@ class Bookings extends Model
 
     public function venue()
     {
-        return $this->belongsTo(Venue::class, 'id');
+        return $this->belongsTo(Venue::class, 'venueId');
     }
 
     public function getArrayResponse() {

@@ -16,8 +16,6 @@ use JWTAuthException;
 
 use App\Models\Roles;
 use App\Models\Api\ApiUser as User;
-use App\Models\Api\ApiHostel as Hostel;
-use App\Models\Api\ApiStudent as Student;
 use App\Models\Api\ApiUserDetail as UserDetail;
 
 class AuthController extends Controller
@@ -72,12 +70,10 @@ class AuthController extends Controller
             }
             elseif ($user->isVenue())
             {
-                // $hostel = Hostel::where('userId', '=', $user->id)->first();
-
-                if ($user->verified == 0 )
+                if ($user->venue->isPaid == NULL )
                 {
                     $response['data']['code']     =  401;
-                    $response['data']['message']  =  "Sorry! Your request to register a new hostel is not approved yet by administrator!";
+                    $response['data']['message']  =  "Your account status is not activate. Please pay your fee then try.";
                     $response['status'] = false;    
                 }   
                 else
@@ -86,14 +82,12 @@ class AuthController extends Controller
                     $response['data']['message']              =   "Request Successfull!!";
                     $response['data']['token']                =   User::loginUser($user->id,$token);
                     $response['data']['result']['userData']   =   $user->getArrayResponse();
-                    // $response['data']['result']['hostel']     =   $hostel;
+                    $response['data']['result']['venue']      =   $user->venue;
                     $response['status']= true;
                 }
             }
             elseif ($user->isCustomer())
             {
-                // $student = Student::where('userId', '=', $user->id)->first();
-
                 if ($user->verified == 0 )
                 {
                     $response['data']['code']  = 401;
@@ -106,8 +100,7 @@ class AuthController extends Controller
                     $response['data']['message']              =   "Request Successfull!!";
                     $response['data']['token']                =   User::loginUser($user->id,$token);
                     $response['data']['result']['userData']   =   $user->getArrayResponse();
-                    $response['data']['result']['student']    =   $student;
-
+                    $response['data']['result']['customer']    =  $user->customer;
                     $response['status']= true;
                 }
             }
@@ -224,12 +217,7 @@ class AuthController extends Controller
         return $response;
     }
 
-
-
-
   // ---------- New Login ---------- //
-
-
 
     public function forgotPass(Request $request)
     {
@@ -257,13 +245,12 @@ class AuthController extends Controller
                 $userId = $user->id;
                 $email = $user->email;
                 $username = $user->username;         
-                
                 $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
                 $password = substr($random, 0, 10);
                 
                 $tousername = $email;
 
-                \Mail::send('mail',["username"=>$username, "userId"=>$userId,"password"=>$password], function ($message) use ($tousername) {
+                \Mail::send('Mails.forgotPassword',["username"=>$username, "userId"=>$userId,"password"=>$password], function ($message) use ($tousername) {
                 $message->from('info@fantasycricleague.online', 'password');
                 $message->to($tousername)->subject('Forgot Password!');
 

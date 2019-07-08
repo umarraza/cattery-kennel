@@ -39,7 +39,7 @@ class Venue extends Model
     ];
 
 
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::class,'id','userId');
     }
@@ -49,6 +49,10 @@ class Venue extends Model
         return $this->hasMany(Bookings::class, 'venueId');
     }
 
+    public function images()
+    {
+        return $this->hasMany(CatteryImages::class, 'venueId')->where('isProfile', 1);
+    }
 
     public function getArrayResponse() {
         return [

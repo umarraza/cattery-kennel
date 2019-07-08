@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2019 at 03:05 PM
+-- Generation Time: Jul 08, 2019 at 01:31 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -47,17 +47,12 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `venueId`, `customerId`, `noOfCats`, `noOfDogs`, `checkIn`, `checkOut`, `isActive`, `isRegistered`, `createdAt`, `updatedAt`) VALUES
-(15, 3, 22, 5, 5, '2019-07-03 19:00:00', '2019-07-10 19:00:00', 1, 1, '2019-07-01 00:06:06', '2019-07-01 00:06:06'),
-(16, 3, 22, 3, 3, '2019-07-01 19:00:00', '2019-07-04 19:00:00', 1, 1, '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
-(26, 4, 23, 5, 5, '2019-07-07 19:00:00', '2019-07-15 19:00:00', 1, 1, '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
-(33, 4, 23, 7, 2, '2019-06-27 19:00:00', '2019-06-30 19:00:00', 1, 1, '2019-07-01 07:26:32', '2019-07-01 07:26:32'),
-(35, 4, 42, 10, 5, '2019-07-09 19:00:00', '2019-07-14 19:00:00', 1, 0, '2019-07-03 01:17:06', '2019-07-03 01:17:06'),
-(36, 4, 43, 2, 3, '2019-07-12 19:00:00', '2019-07-16 19:00:00', 1, 0, '2019-07-03 01:18:00', '2019-07-03 01:18:00'),
-(37, 4, 44, 1, 1, '2019-07-11 19:00:00', '2019-07-15 19:00:00', 1, 0, '2019-07-03 01:18:41', '2019-07-03 01:18:41'),
-(38, 3, 45, 2, 2, '2019-07-10 19:00:00', '2019-07-19 19:00:00', 1, 0, '2019-07-03 01:19:29', '2019-07-03 01:19:29'),
-(39, 3, 46, 3, 5, '2019-07-14 19:00:00', '2019-07-22 19:00:00', 1, 1, '2019-07-03 01:20:52', '2019-07-03 01:20:52'),
-(40, 3, 47, 3, 5, '2019-06-28 19:00:00', '2019-07-05 19:00:00', 1, 1, '2019-07-03 05:36:04', '2019-07-03 05:36:04'),
-(41, 3, 48, 3, 5, '2019-06-23 19:00:00', '2019-07-04 19:00:00', 1, 1, '2019-07-03 05:37:38', '2019-07-03 05:37:38');
+(1, 3, 1, 5, 5, '2019-07-13 19:00:00', '2019-07-19 19:00:00', 1, 0, '2019-07-07 23:56:56', '2019-07-08 02:33:53'),
+(2, 4, 2, 5, 5, '2019-06-27 19:00:00', '2019-07-06 19:00:00', 0, 1, '2019-07-07 23:58:19', '2019-07-08 02:33:53'),
+(3, 4, 2, 5, 5, '2019-06-27 19:00:00', '2019-07-07 19:00:00', 1, 1, '2019-07-08 00:56:11', '2019-07-08 00:56:11'),
+(7, 4, 1, 5, 5, '2019-07-03 19:00:00', '2019-07-07 19:00:00', 1, 1, '2019-07-08 01:00:01', '2019-07-08 01:00:01'),
+(8, 4, 2, 1, 1, '2019-07-04 19:00:00', '2019-07-11 19:00:00', 1, 1, '2019-07-08 01:00:12', '2019-07-08 01:00:12'),
+(23, 4, 13, 5, 5, '2019-07-13 19:00:00', '2019-07-19 19:00:00', 1, 0, '2019-07-08 04:31:36', '2019-07-08 04:31:36');
 
 -- --------------------------------------------------------
 
@@ -68,10 +63,20 @@ INSERT INTO `bookings` (`id`, `venueId`, `customerId`, `noOfCats`, `noOfDogs`, `
 CREATE TABLE `cattery_images` (
   `id` int(10) NOT NULL,
   `imageName` varchar(100) NOT NULL,
+  `isProfile` int(11) NOT NULL,
   `venueId` int(10) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cattery_images`
+--
+
+INSERT INTO `cattery_images` (`id`, `imageName`, `isProfile`, `venueId`, `createdAt`, `updatedAt`) VALUES
+(1, 'image_1562561536.jpeg', 1, 3, '2019-07-07 23:52:16', '2019-07-07 23:52:16'),
+(2, 'image_1562581050.jpeg', 1, 4, '2019-07-08 05:17:30', '2019-07-08 05:17:30'),
+(3, 'image_1562581592.jpeg', 0, 4, '2019-07-08 05:26:32', '2019-07-08 05:26:32');
 
 -- --------------------------------------------------------
 
@@ -96,17 +101,9 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `bookerName`, `email`, `address`, `phoneNumber`, `requirements`, `userId`, `createdAt`, `updatedAt`) VALUES
-(22, 'Kamran Khan', 'kamran120@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 37, '2019-07-01 00:06:06', '2019-07-01 00:06:06'),
-(23, 'Akmal Mushtaq', 'akmal120@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 38, '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
-(33, 'Mujtaba Rehman', 'mujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 49, '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
-(40, 'Malik Hamza', 'malikhamza@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 56, '2019-07-01 07:26:32', '2019-07-01 07:26:32'),
-(42, 'angel', 'angel@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-03 01:17:06', '2019-07-03 01:17:06'),
-(43, 'baby', 'babyl@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-03 01:18:00', '2019-07-03 01:18:00'),
-(44, 'Hippophobia', 'hippophobia@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-03 01:18:41', '2019-07-03 01:18:41'),
-(45, 'Iwantamaste', 'lwantamaste@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-03 01:19:29', '2019-07-03 01:19:29'),
-(46, 'Breacche', 'breacche@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 57, '2019-07-03 01:20:52', '2019-07-03 01:20:52'),
-(47, 'johncena', 'johncena@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 58, '2019-07-03 05:36:04', '2019-07-03 05:36:04'),
-(48, 'romanriengs', 'romanriengs@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 59, '2019-07-03 05:37:38', '2019-07-03 05:37:38');
+(1, 'Amir Mujtaba', 'amirmujtaba@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-07 23:56:56', '2019-07-07 23:56:56'),
+(2, 'Rehan Ali', 'rehanali@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 62, '2019-07-07 23:58:19', '2019-07-07 23:58:19'),
+(13, 'Fahad Ali', 'fahadali@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-08 04:31:36', '2019-07-08 04:31:36');
 
 -- --------------------------------------------------------
 
@@ -130,9 +127,8 @@ CREATE TABLE `customer_pets` (
 --
 
 INSERT INTO `customer_pets` (`id`, `catName`, `dogName`, `dateOfBirth`, `image`, `customerId`, `createdAt`, `updatedAt`) VALUES
-(1, 'Sandy', NULL, '2-05-2019', 'image_1562237867.jpeg', 22, '2019-07-04 05:57:47', '2019-07-04 05:57:47'),
-(2, 'Sandy', NULL, '2-05-2019', 'image_1562237913.jpeg', 22, '2019-07-04 05:58:33', '2019-07-04 05:58:33'),
-(3, NULL, 'Hardy', '2-05-2019', 'image_1562238040.jpeg', 22, '2019-07-04 06:00:40', '2019-07-04 06:00:40');
+(1, 'Sandy', NULL, '05-03-2019', 'image_1562567088.jpeg', 1, '2019-07-08 01:24:48', '2019-07-08 01:24:48'),
+(2, NULL, 'Hardy', '07-08-2018', 'image_1562567145.jpeg', 1, '2019-07-08 01:25:45', '2019-07-08 01:25:45');
 
 -- --------------------------------------------------------
 
@@ -147,19 +143,6 @@ CREATE TABLE `peak_dates` (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `peak_dates`
---
-
-INSERT INTO `peak_dates` (`id`, `date`, `occurence`, `createdAt`, `updatedAt`) VALUES
-(1, '2019-07-03 19:00:00', 4, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
-(2, '2019-07-04 19:00:00', 4, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
-(3, '2019-07-10 19:00:00', 4, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
-(4, '2019-07-11 19:00:00', 4, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
-(5, '2019-07-12 19:00:00', 5, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
-(6, '2019-07-13 19:00:00', 5, '2019-07-04 02:58:13', '2019-07-04 02:58:13'),
-(7, '2019-07-14 19:00:00', 6, '2019-07-04 02:58:13', '2019-07-04 02:58:13');
 
 -- --------------------------------------------------------
 
@@ -216,15 +199,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `remember_token`, `roleId`, `resetPasswordToken`, `createdResetPToken`, `avatarFilePath`, `deviceToken`, `onlineStatus`, `verified`, `googleLogin`, `facebookLogin`, `language`, `createdAt`, `updatedAt`) VALUES
 (1, 'super.admin@admin.com', 'super.admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 'J4Wo5S1I3oG53IGMe2ttEW2YFKojus9tizVBsMCr59YPTrbQqUd00YudN4Og', 1, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-06-27 11:25:48', '2019-06-26 19:00:00'),
-(16, 'shahidmalik', 'shahidmalik@gmail.com', '$2y$10$VysYM2WWEolnSA399bedg.HLHm.Icawn1SMY27vTbBIR0jHPMxowy', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-02 05:11:35', '2019-07-02 00:11:27'),
-(37, 'kami', 'kamran120@gmail.com', '$2y$10$ktAzt2.iUc/q5cehiQU/suUQ77R4T56kO1yWNlv1tKwuxzGO3eto2', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 00:06:06', '2019-07-01 00:06:06'),
-(38, 'akmal2200', 'akmal120@gmail.com', '$2y$10$lQiVJF9ZHNdyRNzp//yqO.wgxRNlyYDlR4Fgleoy9qWDpfafeu0de', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 00:07:21', '2019-07-01 00:07:21'),
-(39, 'shaheenkhan', 'shaheenkhan@gmail.com', '$2y$10$xA.Iy3eIia9VpXV0fgOnSOxePQvRFm4JuWsphKJJdbtblFT0.V6SC', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 01:42:12', '2019-07-01 01:42:12'),
-(49, 'mujtaba', 'mujtaba@gmail.com', '$2y$10$1cb8l3inMUoCA.El511Pz.2cogeOC2wlkmtds61wTGnPxJbR9LhZi', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 07:11:50', '2019-07-01 07:11:50'),
-(56, 'malikhamza', 'malikhamza@gmail.com', '$2y$10$8YDQqyUig6H7AkGvHiU.WumbLyxjfkc5hwGLUzii5s.WSNU2ZDE..', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-01 07:26:32', '2019-07-01 07:26:32'),
-(57, 'baby', 'breacche@gmail.com', '$2y$10$cNC2DGh71xlBdj3H9g6VJuz2oarnKTLf4Ag2SaFNnpdUQZPmfCOAa', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-03 01:20:52', '2019-07-03 01:20:52'),
-(58, 'johncena', 'johncena@gmail.com', '$2y$10$K1Xa/QhKbJxZ2p9aUVSvPuo2pm6a99lkWhzDw6BXOc8Jdk19RWIQe', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-03 05:36:04', '2019-07-03 05:36:04'),
-(59, 'romanriengs', 'romanriengs@gmail.com', '$2y$10$o/nzqPvIwnbV5QSreRIYEODRhXk.CBrufp88cL0hMbkUqDWJp6kxa', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-03 05:37:38', '2019-07-03 05:37:38');
+(60, 'shahidmalik', 'shahidmalik@gmail.com', '$2y$10$qRFLGV14wCaQljSIe4eRSuFCVtw.L7N7CTVc0bmZCqd.WWZvW1j6G', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-08 04:54:20', '2019-07-07 23:54:20'),
+(61, 'numanhashmi', 'numanhashmi@gmail.com', '$2y$10$pMy7MlKP4zunnALI1lPdMOdhv53Af/oynJW3OzWOSjK3SkoRRDXiW', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-07 23:48:49', '2019-07-07 23:48:49'),
+(62, 'rehanali', 'rehanali@gmail.com', '$2y$10$YczHE2D2NmjeYtVzjeks5ebpLSIphNya5TnT4IvaAKYnVxuysrFVi', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-07 23:58:19', '2019-07-07 23:58:19'),
+(63, 'usamakhan', 'usamakhan@gmail.com', '$2y$10$8erHrQ/iC4MR/yjtOxSRy.hok97iQubRMDGbQLOS6R2okh9I5VLNC', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-08 01:44:48', '2019-07-08 01:44:48'),
+(75, 'arshadriaz', 'arshadriaz@gmail.com', '$2y$10$j679QpEJBt74kyVCpOPLi.fvXEFpW7mHpOW6AU8Jp3LEIjXgO3YBK', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-08 04:42:31', '2019-07-08 04:42:31');
 
 -- --------------------------------------------------------
 
@@ -246,7 +225,7 @@ CREATE TABLE `venues` (
   `totalCats` int(100) NOT NULL,
   `totalDogs` int(100) NOT NULL,
   `type` varchar(50) NOT NULL,
-  `isPaid` varchar(50) NOT NULL,
+  `isPaid` varchar(50) DEFAULT NULL,
   `isAvailable` int(10) NOT NULL DEFAULT '1',
   `userId` int(10) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -258,8 +237,10 @@ CREATE TABLE `venues` (
 --
 
 INSERT INTO `venues` (`id`, `buisnessName`, `email`, `address`, `postcode`, `phoneNumber`, `buisnessDescription`, `facilities`, `serviceRate`, `discountAvailable`, `totalCats`, `totalDogs`, `type`, `isPaid`, `isAvailable`, `userId`, `createdAt`, `updatedAt`) VALUES
-(3, 'Cattery', 'shahidmalik@gmail.com', 'Lahore, Pakistan', 53720, '03034969407', 'Some Description about the buisness of cattery and kennel', 'some facilities', '2500', '50%', 9, 3, 'kennel', '8.25GBP+VAT', 1, 16, '2019-07-01 00:03:15', '2019-07-03 05:37:38'),
-(4, 'Cattery', 'shaheenkhan@gmail.com', 'Karachi, Pakistan', 45231, '03218840489', 'Some Description about the buisness of cattery and kennel', 'some facilities', '1500', '50%', -13, -9, 'kennel', '8.25GBP+VAT', 0, 39, '2019-07-01 01:44:40', '2019-07-03 01:18:41');
+(3, 'Cattery', 'shahidmalik@gmail.com', 'Lahore, Pakistan', 53720, '03034969407', 'Some Description about the buisness of cattery and kennel', 'some facilities', '100', '50%', 15, 15, 'kennel', '8.25GBP+VAT', 1, 60, '2019-07-07 23:48:21', '2019-07-08 04:31:36'),
+(4, 'Cattery', 'numanhashmi@gmail.com', 'Lahore, Pakistan', 53720, '03034969407', 'Some Description about the buisness of cattery and kennel', 'some facilities', '200', '50%', 9, 9, 'kennel', '8.25GBP+VAT', 1, 61, '2019-07-07 23:49:21', '2019-07-08 02:33:53'),
+(5, 'Kennel', 'usamakhan@gmail.com', 'Multan, Pakistan', 452041, '03218840489', 'Some Description about the buisness of cattery and kennel', 'some facilities', '50', '50%', 20, 20, 'kennel', NULL, 1, 63, '2019-07-08 01:45:51', '2019-07-08 01:45:51'),
+(18, 'Cattery & Kennel Service Providers', 'arshadriaz@gmail.com', 'Faisalabad, Pakistan', 452041, '03218840489', 'Some Description about the buisness of cattery and kennel', 'some facilities', '50', '50%', 20, 20, 'kennel', '5.24', 1, 75, '2019-07-08 04:43:16', '2019-07-08 04:43:16');
 
 --
 -- Indexes for dumped tables
@@ -321,31 +302,31 @@ ALTER TABLE `venues`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `cattery_images`
 --
 ALTER TABLE `cattery_images`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `customer_pets`
 --
 ALTER TABLE `customer_pets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `peak_dates`
 --
 ALTER TABLE `peak_dates`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -357,13 +338,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `venues`
 --
 ALTER TABLE `venues`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

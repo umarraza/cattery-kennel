@@ -346,7 +346,7 @@
 
     <div class="row" style="background-color:#19baff">
         <center>
-            <h1>Cattery & Kennel 360</h1>
+            <h1>Cattery & Kennel</h1>
         </center>
     </div>
 

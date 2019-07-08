@@ -26,6 +26,11 @@ class Customer extends Model
         return $this->hasMany(Bookings::class, 'customerId');
     }
 
+    public function user() {
+        return $this->belongsTo(User::class, 'id', 'userId');
+    }
+
+
     public function getArrayResponse() {
         
         return [

@@ -23,6 +23,7 @@ Route::post('/reset-password', 'Api\AuthController@changePassword');
 // Venue Routes
 Route::post('/create-venue', 'Api\VenueAdminController@createVenue');
 Route::post('/list-new-bookings', 'Api\VenueAdminController@listNewBooking');
+Route::post('/venue-details', 'Api\VenueAdminController@venueDetails');
 
 // Images Routes
 Route::post('/create-cattery-image', 'Api\CatteryImagesController@createImages');
@@ -37,12 +38,15 @@ Route::post('/new-pet', 'Api\PetsController@newPet');
 // Booking Routes
 Route::post('/new-booking', 'Api\BookingsController@newBooking');
 Route::get('/update-bookings-status', 'Api\BookingsController@updateBookings');
-Route::post('/list-venue-bookings', 'Api\BookingsController@listVenueBookings');
+Route::post('/list-venue-bookings', 'Api\BookingsController@newVenueBookings');
+Route::post('/registered-bookings', 'Api\BookingsController@registeredBooking');
+
 
 // Admin Routes
 Route::get('/list-repeat-bookers', 'Api\AdminController@repeatBookers');
 Route::get('/peak-dates-booked', 'Api\AdminController@peakDatesBooked');
 Route::get('/customer-pets', 'Api\AdminController@noOfcustomerPets');
+Route::get('/list-all-venues', 'Api\AdminController@listVenues');
 
 // Search Routes
 Route::post('/search-venues', 'Api\SearchController@serachVenues');

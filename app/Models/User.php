@@ -68,6 +68,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(Roles::class,'id','roleId');
     }
+    
+    public function venue()
+    {
+        return $this->hasOne(Venue::class,'userId','id');
+    }
+    
+    public function customer()
+    {
+        return $this->hasOne(Customer::class,'userId','id');
+    }
 
     /**
      * @return mixed
@@ -84,10 +94,7 @@ class User extends Authenticatable
         return false;
     }
 
-    public function Supplier()
-    {
-        return $this->hasOne(Supllier::class,'userId','id');
-    }
+
 
     public function isVenue(){
         

@@ -1,1 +1,1 @@
-<h1>Hi Venue</h1>
+<h1>Hi Venue! A new booking have been registered.</h1>

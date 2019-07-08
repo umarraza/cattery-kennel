@@ -13,6 +13,7 @@ use DB;
 
 use App\Models\Api\ApiVenue as Venue;
 use App\Models\Api\ApiBookings as Booking;
+use App\Models\Api\ApiUser as User;
 
 class VenueAdminController extends Controller
 {
@@ -38,7 +39,7 @@ class VenueAdminController extends Controller
             'phoneNumber'          =>   'required',
             'buisnessDescription'  =>   'required',
             'facilities'           =>   'required',
-            'serviceaRate'         =>   'required',
+            'serviceRate'          =>   'required',
             'discountAvailable'    =>   'required',
             'totalCats'            =>   'required',
             'totalDogs'            =>   'required',
@@ -62,38 +63,37 @@ class VenueAdminController extends Controller
 
                 $venue = Venue::create([
 
-                        'buisnessName' => $request->get('buisnessName'),
-                        'email' => $request->get('email'),
-                        'address' => $request->get('address'),
-                        'postcode' => $request->get('postcode'),
-                        'phoneNumber' => $request->get('phoneNumber'),
-                        'buisnessDescription' => $request->get('buisnessDescription'),
-                        'facilities' => $request->get('facilities'),
-                        'serviceRate' => $request->get('serviceRate'),
-                        'discountAvailable' => $request->get('discountAvailable'),
-                        'totalCats' => $request->get('totalCats'),
-                        'totalDogs' => $request->get('totalDogs'),
-                        'type' => $request->get('type'),
-                        'isPaid' => $request->get('isPaid'),
-                        'userId' => $request->get('userId'),
+                        'buisnessName'         =>  $request->get('buisnessName'),
+                        'email'                =>  $request->get('email'),
+                        'address'              =>  $request->get('address'),
+                        'postcode'             =>  $request->get('postcode'),
+                        'phoneNumber'          =>  $request->get('phoneNumber'),
+                        'buisnessDescription'  =>  $request->get('buisnessDescription'),
+                        'facilities'           =>  $request->get('facilities'),
+                        'serviceRate'          =>  $request->get('serviceRate'),
+                        'discountAvailable'    =>  $request->get('discountAvailable'),
+                        'totalCats'            =>  $request->get('totalCats'),
+                        'totalDogs'            =>  $request->get('totalDogs'),
+                        'type'                 =>  $request->get('type'),
+                        'isPaid'               =>  $request->get('isPaid'),
+                        'userId'               =>  $request->get('userId'),
 
                     ]);
 
-                    // $checkPayment = $supllier->isPaid;
+                    $user = User::whereUsername($request->get('username'))->first();
+                    $checkPayment = $venue->isPaid;
 
-                    // if(isset($checkPayment)) {
+                    if(isset($checkPayment)) {
 
-                    //     $buisnessName = $request->get('buisnessName');
-                    //     $message = "A random message";
-                    //     $tousername = $request->get('email');
-
-                    //     \Mail::send('mail',["buisnessName"=>$buisnessName], function ($message) use ($tousername) {
-                    
-                    //         $message->from('info@fantasycricleague.online');
-                    //         $message->to($tousername)->subject('Confirm your buisness');
-                
-                    //    });
-                    // }
+                        $buisnessName = $request->get('buisnessName');
+                        $message = "A random message";
+                        $tousername = $user->email;
+                        
+                        \Mail::send('Mails.mail',["buisnessName"=>$buisnessName], function ($message) use ($tousername) {
+                            $message->from('info@fantasycricleague.online');
+                            $message->to($tousername)->subject('Confirm your buisness');
+                       });
+                    }
 
                     DB::commit();
 
@@ -149,4 +149,27 @@ class VenueAdminController extends Controller
         }
         return $response;
     }
+
+    public function venueDetails(Request $request) {
+        
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+                'status' => false
+            ];
+            
+            try {
+                
+                $venue = Venue::with('images')->whereId($request->venueId)->get();
+
+            } catch (Exception $e) {
+
+                throw $e;
+            }
+        return $response;
+    }
+
+
 }

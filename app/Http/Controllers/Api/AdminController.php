@@ -64,7 +64,7 @@ class AdminController extends Controller
                 $customers = Customer::whereIn('id', $new_array)->get();
 
                 $response['data']['code']       =  200;
-                $response['data']['message']    =  'Request Successfull';
+                $response['data']['message']    =  'List of repeated bookers is given below!';
                 $response['data']['result']     =  $customers;
                 $response['status']             =  true;
 
@@ -123,46 +123,30 @@ class AdminController extends Controller
 
                 $results = array_count_values($array);
 
-                $new_array2[] = 0;
+                $new_array2 = [];
                 $new_array3 = [];
 
-                foreach ($results as $key => $value) {
+                $dates = [];
 
-                    if ($value >= 3 && $value >= max($new_array2)) {
+                foreach ($results as $key => $value) {
+                    // && $value >= max($new_array2)
+                    if ($value >= 3) {
 
                         $new_array3[] = $key;
                         $date_key = $key;
                         $occurence = $value;
                         $new_array2[] = $value;
 
-                        $date = PeakDate::create([
+                        $dates[] = PeakDate::create([
                             "date" => $date_key,
                             "occurence" => $occurence
                         ]);
                     }
                 }
 
-                $peakDates = PeakDate::select('date', 'occurence')->get();
-                $array_data = json_decode($peakDates);
-                $reversed_array = array_reverse($array_data);
-                $count = count($reversed_array);
-
-                $sameDates = [];
-
-                // return $peakDates;
-
-                for ($i = 0; $i < $count; $i++) {
-
-                    $sameDates[] = PeakDate::whereOccurence($peakDates[$i]->occurence)
-                    ->select('date', 'occurence')->get();
-
-                }
-
-                DB::commit();
-
                 $response['data']['code']       =  200;
                 $response['data']['message']    =  'Request Successfull';
-                $response['data']['result']     =  $reversed_array;
+                $response['data']['result']     =  $dates;
                 $response['status']             =  true;
 
             } catch (Exception $e) {
@@ -213,7 +197,42 @@ class AdminController extends Controller
         return $response;
     }
 
+    public function listVenues(Request $request) {
 
+        $user = JWTAuth::toUser($request->token);
 
+        $response = [
+                'data' => [
+                    'code'      =>  400,
+                    'errors'    =>  'Invalid Token, user not found!',
+                ],
+                'status' => false
+            ];
 
+        if(!empty($user) && $user->isSuperAdmin())
+        {
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+                'status' => false
+            ];
+            
+            try {
+
+                $venues = Venue::all();
+                
+                $response['data']['code']       =  200;
+                $response['data']['message']    =  'Request Successfull';
+                $response['data']['result']     =  $venues;
+                $response['status']             =  true;
+
+            } catch (Exception $e) {
+
+                throw $e;
+            }
+        }
+        return $response;
+    }
 }

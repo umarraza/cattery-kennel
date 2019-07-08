@@ -22,7 +22,8 @@ class CatteryImages extends Model
      */
     protected $fillable = [
         'imageName',
-        'venueId',
+        'isProfile',
+        'venueId'
     ];
 
     public function getArrayResponse() {
@@ -30,8 +31,13 @@ class CatteryImages extends Model
 
             'id'  	     =>  $this->id,
             'imageName'  =>  $this->imageName,
+            'isProfile'  => $this->isProfile,
             'venueId'    =>  $this->venueId,
 
         ];
+    }
+
+    public function venue() {
+        return $this->belongsTo(Venue::class, 'id');
     }
 }

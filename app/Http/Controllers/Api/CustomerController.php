@@ -17,7 +17,6 @@ use App\Models\Api\ApiCustomerPets as CustomerPets;
 
 
 use DB;
-use Mail;
 
 class CustomerController extends Controller
 {
@@ -92,8 +91,6 @@ class CustomerController extends Controller
     
                     ]);
     
-                    $pets = $request->get('pets');
-
 
                     /*
 
@@ -127,19 +124,37 @@ class CustomerController extends Controller
                     ]);
 
                     $venue = Venue::whereId($request->venueId)->first();
-
+                    $venueMail = $venue->email;
                     $venue->totalCats -= $request->noOfCats;
                     $venue->totalDogs -= $request->noOfDogs;
 
                     $venue->save();
 
-                    if($venue->totalCats == 0 && $venue->totalDogs == 0) {
+                    if($venue->totalCats <= 0 && $venue->totalDogs <= 0) {
 
                         $venue = Venue::whereId($request->venueId)->update([
                             'isAvailable' => 0,
                         ]);
 
                     }
+                    $customerMail = $request->get('email');
+                    $customerMessage = "Hi! Customer";
+
+                    \Mail::send('Mails.customer', ["message" => $customerMessage], function ($customerMessage) use ($customerMail)
+                    {
+                        $customerMessage->from('info@cattery&kennel.online', 'Catteries & Kennels');
+                        $customerMessage->to($customerMail);
+                        $customerMessage->subject("New Email From Your site");
+                    });
+
+                    $venueMessage = "Hi! Venue";
+
+                    \Mail::send('Mails.venue', ["message" => $venueMessage], function ($venueMessage) use ($venueMail)
+                    {
+                        $venueMessage->from('info@cattery&kennel.online', 'Catteries & Kennels');
+                        $venueMessage->to($venueMail);
+                        $venueMessage->subject("New Email From Your site");
+                    });
 
                     DB::commit();
     
@@ -174,7 +189,7 @@ class CustomerController extends Controller
                     ]);
     
                     $venue = Venue::whereId($request->venueId)->first();
-
+                    $venueMail = $venue->email;
                     $venue->totalCats -= $request->noOfCats;
                     $venue->totalDogs -= $request->noOfDogs;
 
@@ -188,25 +203,23 @@ class CustomerController extends Controller
                     }
 
                     $customerMail = $request->get('email');
-                    $venueMail = $venue->email;
+                    $customerMessage = "Hi! Customer";
 
-                    // $customerMessage = "Hi! Customer";
+                    \Mail::send('Mails.customer', ["message" => $customerMessage], function ($customerMessage) use ($customerMail)
+                    {
+                        $customerMessage->from('info@cattery&kennel.online', 'Catteries & Kennels');
+                        $customerMessage->to($customerMail);
+                        $customerMessage->subject("New Email From Your site");
+                    });
 
-                    // Mail::send('Mails.customer', ["message" => $customerMessage], function ($customerMessage) use ($customerMail)
-                    // {
-                    //     $customerMessage->from('umarraza2200@gmail.com', 'Catteries & Kennels');
-                    //     $customerMessage->to($customerMail);
-                    //     $customerMessage->subject("New Email From Your site");
-                    // });
+                    $venueMessage = "Hi! Venue";
 
-                    // $venueMessage = "Hi! Venue";
-
-                    // Mail::send('Mails.venue', ["message" => $venueMessage], function ($venueMessage) use ($venueMail)
-                    // {
-                    //     $venueMessage->from('umarraza2200@gmail.com', 'Catteries & Kennels');
-                    //     $venueMessage->to($venueMail);
-                    //     $venueMessage->subject("New Email From Your site");
-                    // });
+                    \Mail::send('Mails.venue', ["message" => $venueMessage], function ($venueMessage) use ($venueMail)
+                    {
+                        $venueMessage->from('info@cattery&kennel.online', 'Catteries & Kennels');
+                        $venueMessage->to($venueMail);
+                        $venueMessage->subject("New Email From Your site");
+                    });
 
                     DB::commit();
 

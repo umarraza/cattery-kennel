@@ -346,12 +346,12 @@
 
     <div class="row" style="background-color:#19baff">
         <center>
-            <h1>Cattery & Kennel 360</h1>
+            <h1>Cattery & Kennel</h1>
         </center>
     </div>
 
     <p>Congratulations! You are registed successfully.</p>
-    <p class="lead">Stay Awesome,<br>The Cattery & Kennel Team<br><u>info@student360.co</u></p>
+    <p class="lead">Stay Awesome,<br>The Cattery & Kennel Team<br><u>info@cattery&cannel.online</u></p>
     <br>
     <br>
     <div class="row" style="background-color:#f7f7f7">

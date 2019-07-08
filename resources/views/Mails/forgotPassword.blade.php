@@ -401,9 +401,9 @@ height:350px;
             Assure Tots
         </center>
     </div>
-    <p class="lead"><b>Hi {{$firstName}},</b>
+    <p class="lead"><b>Hi {{$username}},</b>
 
-    <p class="lead">Reset your password, and we’ll get you plugged back into the Waves App. To change your password, click on the button below. The link to reset your password will expire in 24 hours. Thank you for using the Waves App! </p>
+    <p class="lead">Reset your password, and we’ll get you plugged back into the Cattery & Kennel. To change your password, click on the button below. The link to reset your password will expire in 24 hours. Thank you for using the Waves App! </p>
 
     <a class="newClass" 
         target="_blank" href="{{ url('../pages/resetPassword/'.$userId.'/'.$token)}}">Reset Password</a>
