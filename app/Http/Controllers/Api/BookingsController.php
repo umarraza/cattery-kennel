@@ -161,6 +161,8 @@ class BookingsController extends Controller
 
                         $venue = Venue::whereId($request->venueId)->update([
                             'isAvailable' => 0,
+                            'totalCats' => 0,
+                            'totalDogs' => 0
                         ]);
 
                     }
