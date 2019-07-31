@@ -40,6 +40,9 @@ Route::post('/new-booking', 'Api\BookingsController@newBooking');
 Route::get('/update-bookings-status', 'Api\BookingsController@updateBookings');
 Route::post('/list-venue-bookings', 'Api\BookingsController@newVenueBookings');
 Route::post('/registered-bookings', 'Api\BookingsController@registeredBooking');
+Route::post('/active-bookings', 'Api\BookingsController@activeBookings');
+Route::post('/old-bookings', 'Api\BookingsController@activeBookings');
+
 
 
 // Admin Routes

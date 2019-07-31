@@ -14,6 +14,7 @@ use DB;
 use App\Models\Api\ApiVenue as Venue;
 use App\Models\Api\ApiBookings as Booking;
 use App\Models\Api\ApiUser as User;
+use App\Models\Api\ApiCatteryImages as CatteryImages;
 
 class VenueAdminController extends Controller
 {
@@ -34,16 +35,13 @@ class VenueAdminController extends Controller
         $rules = [
 
             'buisnessName'         =>   'required',
-            'email'                =>   'required',
             'address'              =>   'required',   
             'phoneNumber'          =>   'required',
-            'buisnessDescription'  =>   'required',
             'facilities'           =>   'required',
             'serviceRate'          =>   'required',
             'discountAvailable'    =>   'required',
             'totalCats'            =>   'required',
             'totalDogs'            =>   'required',
-            'type'                 =>   'required',
             'userId'               =>   'required',
         ];
 
@@ -64,27 +62,26 @@ class VenueAdminController extends Controller
                 $venue = Venue::create([
 
                         'buisnessName'         =>  $request->get('buisnessName'),
-                        'email'                =>  $request->get('email'),
                         'address'              =>  $request->get('address'),
                         'postcode'             =>  $request->get('postcode'),
                         'phoneNumber'          =>  $request->get('phoneNumber'),
                         'buisnessDescription'  =>  $request->get('buisnessDescription'),
+                        'discountDescription'  =>  $request->get('discountDescription'),
                         'facilities'           =>  $request->get('facilities'),
                         'serviceRate'          =>  $request->get('serviceRate'),
                         'discountAvailable'    =>  $request->get('discountAvailable'),
                         'totalCats'            =>  $request->get('totalCats'),
                         'totalDogs'            =>  $request->get('totalDogs'),
-                        'type'                 =>  $request->get('type'),
+                        // 'type'                 =>  $request->get('type'),
                         'isPaid'               =>  $request->get('isPaid'),
                         'userId'               =>  $request->get('userId'),
 
                     ]);
 
-                    $user = User::whereUsername($request->get('username'))->first();
-                    $checkPayment = $venue->isPaid;
+                    $user = User::whereId($request->get('userId'))->first();
 
-                    if(isset($checkPayment)) {
-
+                    if($venue->isPaid == 1) {
+                        
                         $buisnessName = $request->get('buisnessName');
                         $message = "A random message";
                         $tousername = $user->email;
@@ -94,6 +91,8 @@ class VenueAdminController extends Controller
                             $message->to($tousername)->subject('Confirm your buisness');
                        });
                     }
+
+
 
                     DB::commit();
 
@@ -162,7 +161,18 @@ class VenueAdminController extends Controller
             
             try {
                 
-                $venue = Venue::with('images')->whereId($request->venueId)->get();
+                $occupiedCats = Booking::whereVenueid($request->venueId)->where('isActive', 1)->sum('noOfCats');
+                $occupiedDogs = Booking::whereVenueid($request->venueId)->where('isActive', 1)->sum('noOfDogs');
+
+                $venue = Venue::with('images')->whereId($request->venueId)->first();
+
+                $venue['occupiedCats'] = $occupiedCats;
+                $venue['occupiedDogs'] = $occupiedDogs;
+
+                $response['data']['code']     =  200;
+                $response['data']['message']  =  'Request Successfull';
+                $response['data']['result']   =  $venue;
+                $response['status']           =  true;
 
             } catch (Exception $e) {
 
@@ -170,6 +180,4 @@ class VenueAdminController extends Controller
             }
         return $response;
     }
-
-
 }

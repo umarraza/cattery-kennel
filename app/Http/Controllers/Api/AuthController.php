@@ -17,6 +17,7 @@ use JWTAuthException;
 use App\Models\Roles;
 use App\Models\Api\ApiUser as User;
 use App\Models\Api\ApiUserDetail as UserDetail;
+use App\Models\Api\ApiCatteryImages as CatteryImages;
 
 class AuthController extends Controller
 {
@@ -66,23 +67,28 @@ class AuthController extends Controller
                 $response['data']['token']              = User::loginUser($user->id,$token);
                 $response['data']['result']['userData'] = $user->getArrayResponse();
                 $response['status']= true;   
-
             }
             elseif ($user->isVenue())
             {
-                if ($user->venue->isPaid == NULL )
-                {
-                    $response['data']['code']     =  401;
-                    $response['data']['message']  =  "Your account status is not activate. Please pay your fee then try.";
-                    $response['status'] = false;    
-                }   
-                else
-                {
-                    $response['data']['code']                 =   200;
-                    $response['data']['message']              =   "Request Successfull!!";
-                    $response['data']['token']                =   User::loginUser($user->id,$token);
-                    $response['data']['result']['userData']   =   $user->getArrayResponse();
-                    $response['data']['result']['venue']      =   $user->venue;
+                if ($user->venue !== NULL) {
+
+                    $images = CatteryImages::whereId($user->venue->id)->first();
+
+                    $response['data']['code']                    =  200;
+                    $response['data']['message']                 =  "Request Successfull!!";
+                    $response['data']['token']                   =  User::loginUser($user->id,$token);
+                    $response['data']['result']['userData']      =  $user->getArrayResponse();
+                    $response['data']['result']['venue']         =  $user->venue;
+                    $response['data']['result']['images']        =  $images;
+                    $response['status'] = true;
+
+                } else {
+
+                    $response['data']['code']                    =  200;
+                    $response['data']['message']                 =  "Request Successfull!!";
+                    $response['data']['token']                   =  User::loginUser($user->id,$token);
+                    $response['data']['result']['userData']      =  $user->getArrayResponse();
+                    $response['data']['result']['venue']         =  $user->venue;
                     $response['status']= true;
                 }
             }
@@ -110,7 +116,7 @@ class AuthController extends Controller
 
     public function signUp(Request $request)
     {
-
+        // return $request;
         $response = [
             'data' => [
                 'code' => 400,
@@ -122,6 +128,7 @@ class AuthController extends Controller
         $rules = [
             
             'username'    =>   'required|unique:users',
+            'fullName'    =>   'required',
             'email'       =>   'required|unique:users',
             'password'    =>   'required',
             'roleId'      =>   'required',
@@ -135,12 +142,14 @@ class AuthController extends Controller
         else
         {
             $username = $request->get('username');
+            $fullName = $request->get('fullName');
             $email    = $request->get('email');
             $password = $request->get('password');
             $roleId   = $request->get('roleId');
 
             $modelUser =  User::create([
                 'username'  => $username,
+                'fullName'  => $fullName,
                 'email'     => $email,
                 'password'  => bcrypt($password),
                 'roleId'    => $roleId,

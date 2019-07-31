@@ -55,7 +55,7 @@ class CustomerController extends Controller
 
             try {
 
-                if ($isRegistered = $request->get('isRegistered') == 1) {
+                if ($request->get('isRegistered') == 1) {
 
                     $password = $request->get('password');
                     $userData = User::whereUsername($request->username)->first();  //check if username exist or not
@@ -70,6 +70,7 @@ class CustomerController extends Controller
                     $user = User::create([
                         
                         'username'  =>  $request->get('username'),
+                        'fullName'  =>  $request->get('bookerName'),
                         'email'     =>  $request->get('email'),
                         'password'  =>  bcrypt($password),
                         'roleId'    =>  $request->get('roleId'),
@@ -124,7 +125,8 @@ class CustomerController extends Controller
                     ]);
 
                     $venue = Venue::whereId($request->venueId)->first();
-                    $venueMail = $venue->email;
+                    $user = User::find($venue->userId);
+                    $venueMail = $user->email;
                     $venue->totalCats -= $request->noOfCats;
                     $venue->totalDogs -= $request->noOfDogs;
 
@@ -164,7 +166,6 @@ class CustomerController extends Controller
                     $response['data']['message']  =  'New booking created successfully';
 
                 } else {
-
                     $customer = Customer::create([
 
                         'bookerName'    =>  $request->get('bookerName'),
@@ -189,7 +190,9 @@ class CustomerController extends Controller
                     ]);
     
                     $venue = Venue::whereId($request->venueId)->first();
-                    $venueMail = $venue->email;
+                    $user = User::find($venue->userId);
+                    $venueMail = $user->email;
+
                     $venue->totalCats -= $request->noOfCats;
                     $venue->totalDogs -= $request->noOfDogs;
 

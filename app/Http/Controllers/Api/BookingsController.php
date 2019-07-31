@@ -236,4 +236,112 @@ class BookingsController extends Controller
         }
         return $response;
     }
+
+
+
+    public function activeBookings(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $response = [
+                'data' => [
+                    'code'      =>  400,
+                    'errors'    =>  '',
+                    'message'   =>  'Invalid Token! User Not Found.',
+                ],
+                'status' => false
+            ];
+
+        if(!empty($user) && $user->isVenue())
+        {
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+               'status' => false
+            ];
+            
+            try {
+                
+                $activeBookings = Booking::join('customers AS customer', 'bookings.customerId', '=', 'customer.id')
+                    ->select(
+                        'customer.bookerName', 
+                        'customer.email', 
+                        'customer.phoneNumber', 
+                        'bookings.noOfCats', 
+                        'bookings.noOfDogs', 
+                        'bookings.checkIn', 
+                        'bookings.checkOut',
+                        'bookings.isActive',
+                        'bookings.isRegistered',
+                        )
+                    ->where('bookings.venueId', $request->id)
+                    ->where('bookings.isActive', 1)
+                    ->get();
+
+                $response['data']['code']     =  200;
+                $response['data']['message']  =  'Request Successfull';
+                $response['data']['result']   =  $activeBookings;
+                $response['status']           =  true;
+
+            } catch (Exception $e) {
+
+                throw $e;
+            }
+        }
+        return $response;
+    }
+
+    public function oldBookings(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $response = [
+                'data' => [
+                    'code'      =>  400,
+                    'errors'    =>  '',
+                    'message'   =>  'Invalid Token! User Not Found.',
+                ],
+                'status' => false
+            ];
+
+        if(!empty($user) && $user->isVenue())
+        {
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+               'status' => false
+            ];
+            
+            try {
+                
+                $oldBookings = Booking::join('customers AS customer', 'bookings.customerId', '=', 'customer.id')
+                    ->select(
+                        'customer.bookerName', 
+                        'customer.email', 
+                        'customer.phoneNumber', 
+                        'bookings.noOfCats', 
+                        'bookings.noOfDogs', 
+                        'bookings.checkIn', 
+                        'bookings.checkOut',
+                        'bookings.isActive',
+                        'bookings.isRegistered',
+                        )
+                    ->where('bookings.venueId', $request->id)
+                    ->where('bookings.isActive', 0)
+                    ->get();
+
+                $response['data']['code']     =  200;
+                $response['data']['message']  =  'Request Successfull';
+                $response['data']['result']   =  $oldBookings;
+                $response['status']           =  true;
+
+            } catch (Exception $e) {
+
+                throw $e;
+            }
+        }
+        return $response;
+    }
 }
