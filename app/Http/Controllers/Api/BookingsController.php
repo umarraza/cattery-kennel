@@ -137,6 +137,7 @@ class BookingsController extends Controller
 
                     DB::beginTransaction();
 
+
                     $booking = Booking::create([
 
                         "venueId" => $request->get('venueId'),
@@ -208,7 +209,9 @@ class BookingsController extends Controller
             ];
             
             try {
-                
+
+
+
                 $newBookings = Booking::join('customers AS customer', 'bookings.customerId', '=', 'customer.id')
                     ->select(
                         'customer.bookerName', 
@@ -220,8 +223,10 @@ class BookingsController extends Controller
                         'bookings.checkOut',
                         'bookings.isRegistered',
                         )
-                    ->where('bookings.venueId', $request->id)
-                    ->where('bookings.checkIn', Carbon::today())
+                    ->where('bookings.venueId', $request->venueId)
+                    ->where('bookings.checkIn', Carbon::today()->toDateString())
+                    ->where('bookings.isActive', 1)
+
                     ->get();
 
                 $response['data']['code']     =  200;
@@ -275,7 +280,7 @@ class BookingsController extends Controller
                         'bookings.isActive',
                         'bookings.isRegistered',
                         )
-                    ->where('bookings.venueId', $request->id)
+                    ->where('bookings.venueId', $request->venueId)
                     ->where('bookings.isActive', 1)
                     ->get();
 
@@ -328,7 +333,7 @@ class BookingsController extends Controller
                         'bookings.isActive',
                         'bookings.isRegistered',
                         )
-                    ->where('bookings.venueId', $request->id)
+                    ->where('bookings.venueId', $request->venueId)
                     ->where('bookings.isActive', 0)
                     ->get();
 

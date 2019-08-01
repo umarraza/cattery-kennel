@@ -33,15 +33,16 @@ Route::post('/list-customer-bookings', 'Api\CustomerController@customerBookings'
 Route::get('/list-customers', 'Api\CustomerController@listCustomers');
 Route::post('/new-customer', 'Api\CustomerController@newCustomer');
 Route::post('/new-pet', 'Api\PetsController@newPet');
+Route::post('/past-customer-bookings', 'Api\CustomerController@customerBookingsHistory');
 
 
 // Booking Routes
-Route::post('/new-booking', 'Api\BookingsController@newBooking');
+Route::post('/new-bookings', 'Api\BookingsController@newVenueBookings');
 Route::get('/update-bookings-status', 'Api\BookingsController@updateBookings');
-Route::post('/list-venue-bookings', 'Api\BookingsController@newVenueBookings');
-Route::post('/registered-bookings', 'Api\BookingsController@registeredBooking');
+Route::post('/customer-new-booking', 'Api\BookingsController@registeredBooking');
 Route::post('/active-bookings', 'Api\BookingsController@activeBookings');
-Route::post('/old-bookings', 'Api\BookingsController@activeBookings');
+Route::post('/old-bookings', 'Api\BookingsController@oldBookings');
+Route::post('/old-bookings', 'Api\BookingsController@oldBookings');
 
 
 
