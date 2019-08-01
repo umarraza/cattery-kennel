@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2019 at 03:17 PM
+-- Generation Time: Aug 01, 2019 at 03:29 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -47,8 +47,10 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `venueId`, `customerId`, `noOfCats`, `noOfDogs`, `checkIn`, `checkOut`, `isActive`, `isRegistered`, `createdAt`, `updatedAt`) VALUES
-(8, 1, 8, 5, 5, '2019-07-30 19:00:00', '2019-08-04 19:00:00', 1, 0, '2019-07-31 02:29:45', '2019-07-31 02:29:45'),
-(10, 1, 10, 2, 3, '2019-07-30 19:00:00', '2019-07-08 19:00:00', 1, 1, '2019-07-31 02:33:37', '2019-07-31 02:33:37');
+(1, 1, 1, 2, 3, '2019-07-31 19:00:00', '2019-08-11 23:58:01', 1, 1, '2019-08-01 00:05:23', '2019-08-01 00:05:23'),
+(2, 1, 2, 2, 3, '2019-07-31 23:58:01', '2019-08-11 23:58:01', 0, 0, '2019-08-01 01:20:52', '2019-08-01 01:20:52'),
+(4, 1, 3, 5, 5, '2019-08-03 19:00:00', '2019-08-09 19:00:00', 1, 1, '2019-08-01 04:41:39', '2019-08-01 04:41:39'),
+(5, 1, 3, 5, 5, '2019-07-02 19:00:00', '2019-07-11 19:00:00', 0, 1, '2019-08-01 04:41:56', '2019-08-01 04:41:56');
 
 -- --------------------------------------------------------
 
@@ -70,7 +72,7 @@ CREATE TABLE `cattery_images` (
 --
 
 INSERT INTO `cattery_images` (`id`, `imageName`, `isProfile`, `venueId`, `createdAt`, `updatedAt`) VALUES
-(1, 'image_1564464479.jpeg', 1, 1, '2019-07-30 00:27:59', '2019-07-30 00:27:59');
+(1, 'image_1564635822.jpeg', 1, 1, '2019-08-01 00:03:42', '2019-08-01 00:03:42');
 
 -- --------------------------------------------------------
 
@@ -95,8 +97,9 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `bookerName`, `email`, `address`, `phoneNumber`, `requirements`, `userId`, `createdAt`, `updatedAt`) VALUES
-(8, 'Fahad Ali', 'fahadali@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-07-31 02:29:45', '2019-07-31 02:29:45'),
-(10, 'Numan ALi', 'numan@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 84, '2019-07-31 02:33:37', '2019-07-31 02:33:37');
+(1, 'Numan ALi', 'numan@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', 87, '2019-08-01 00:05:23', '2019-08-01 00:05:23'),
+(2, 'Numan ALi', 'numan@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-08-01 01:20:52', '2019-08-01 01:20:52'),
+(3, 'Numan ALi', 'numan@gmail.com', 'Lahore, Pakistan', '03034969407', 'Some requirements', NULL, '2019-08-01 02:03:14', '2019-08-01 02:03:14');
 
 -- --------------------------------------------------------
 
@@ -185,12 +188,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `fullName`, `email`, `password`, `remember_token`, `roleId`, `resetPasswordToken`, `createdResetPToken`, `avatarFilePath`, `deviceToken`, `onlineStatus`, `verified`, `googleLogin`, `facebookLogin`, `language`, `createdAt`, `updatedAt`) VALUES
 (1, 'super.admin@admin.com', '', 'super.admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 'J4Wo5S1I3oG53IGMe2ttEW2YFKojus9tizVBsMCr59YPTrbQqUd00YudN4Og', 1, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-06-27 11:25:48', '2019-06-26 19:00:00'),
-(79, 'umarraza2200', 'Uma Raza', 'umarraza@gmail.com', '$2y$10$xp28/sJS4kULHTKAHYq.EOW.Foni4SM2QcRu/B4sAQYoyLt7yAox6', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-30 00:11:27', '2019-07-30 00:11:27'),
-(80, 'anasmahmood', 'anas mahmood', 'anasmahmood@stackcru.com', '$2y$10$I.BYPmAfrYp1MBSSuvYJe.G3QxlZYx4EpDK8/IrNrwfsU.8ZPZiFu', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-30 07:45:24', '2019-07-30 07:45:24'),
-(81, 'umarraza22000', 'Uma Raza', 'umarlraza@gmail.com', '$2y$10$zPiFT6pNJV.1NBTYd1xfXO7za2f6h0zzNrZ2y2tv6fZ9ICqYZY7O.', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-30 07:47:07', '2019-07-30 07:47:07'),
-(82, 'haris123', 'haris ayyaz', 'harisayyaz@gmail.com', '$2y$10$c9zUf4/EB5CujQXE8YJlyuWFAKRWk3T5X0ZVdClIo9bHvBMoq1.Wa', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-31 01:56:00', '2019-07-31 01:56:00'),
-(84, 'numanali', 'Numan ALi', 'numan@gmail.com', '$2y$10$lyCtqg.wDP6.oFZuGOISOusJJLKY4RhF7JyXyeHxzh3ihYhjNDYGu', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-31 02:33:37', '2019-07-31 02:33:37'),
-(85, 'arshad', 'Arshad Riaz', 'arshadriaz@gmail.com', '$2y$10$ntWva3ZpFwbXEMa54ktcoOvWm/fD./HGDYkooCHCY0eWdRaYPvqqi', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-31 04:13:54', '2019-07-31 04:13:54');
+(86, 'anasmahmood', 'anas mahmood', 'anasmahmood@stackcru.com', '$2y$10$YHWwFqt9k8K1PVVG7xXAdubcdqyM9ZcB4CU6BzhXJAF0ar5xeOwYe', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-07-31 23:58:01', '2019-07-31 23:58:01'),
+(87, 'numanali', 'Numan ALi', 'numan@gmail.com', '$2y$10$GQR0QOcjbZQFr7TROt9wc.QCk9wOwKHop7Sj4HyJypKK3J9sr8dYW', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-08-01 00:05:23', '2019-08-01 00:05:23'),
+(88, 'haris123', 'Haris Ayyaz', 'harisayyaz@gmail.com', '$2y$10$OX5o6O8mWEFqjFZzU3I/qOVRVd6QqjMnsCn5IJTJ6y7hBhKdD3OdW', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-08-01 02:18:58', '2019-08-01 02:18:58'),
+(89, 'umarraza2200', 'umar raza', 'umarraza2200@gmail.com', '$2y$10$EHh25PqYx3TFelC/SzH2kuirdYR5P3gPzPTP7JGixJW/yApLlCql6', NULL, 3, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-08-01 06:44:17', '2019-08-01 06:44:17'),
+(90, 'anasmahmood1', 'anas mahmood baig', 'anasmahmood+1@stackcru.com', '$2y$10$GxwEENNoIJrau0yhDzoOzeZRsG75GkyKwVZ2dpNbcLzRv6.k0ZAIq', NULL, 2, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, 'English', '2019-08-01 06:45:19', '2019-08-01 06:45:19');
 
 -- --------------------------------------------------------
 
@@ -224,9 +226,8 @@ CREATE TABLE `venues` (
 --
 
 INSERT INTO `venues` (`id`, `buisnessName`, `address`, `postcode`, `phoneNumber`, `buisnessDescription`, `discountDescription`, `facilities`, `serviceRate`, `discountAvailable`, `totalCats`, `totalDogs`, `type`, `isPaid`, `isAvailable`, `userId`, `createdAt`, `updatedAt`) VALUES
-(1, 'cattery and kennel service provider', 'Lahore, Pakistan', 53720, '030345969407', 'Some description of buisness', '', 'some facilities', '10%', '50', 13, 12, 'kennel', '0', 1, 79, '2019-07-30 00:16:38', '2019-07-31 02:33:37'),
-(2, 'EFRF', 'sdfsdf', 12323, '123123', NULL, NULL, '123', '123', 'yes', 123, 123, NULL, '0', 1, 80, '2019-07-31 01:27:20', '2019-07-31 01:27:20'),
-(4, 'Cattery & Kennel Service Providers', 'Faisalabad, Pakistan', 452041, '03218840489', NULL, NULL, 'some facilities', '50', '50%', 20, 20, NULL, '0', 1, 85, '2019-07-31 04:16:30', '2019-07-31 04:16:30');
+(1, 'my cattery and kennel', '26/b g1 johar town lahore', 54000, '03249470780', NULL, NULL, 'cleaning and air conditioned', '1000', 'yes', 4, 1, NULL, '1', 1, 86, '2019-08-01 00:01:26', '2019-08-01 04:41:56'),
+(2, 'EFRF', 'sdsdfg', 54000, 'sdfg', NULL, NULL, 'dfg', 'fdg', 'no', 20, 20, NULL, '0', 1, 90, '2019-08-01 06:55:16', '2019-08-01 06:55:16');
 
 --
 -- Indexes for dumped tables
@@ -288,7 +289,7 @@ ALTER TABLE `venues`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cattery_images`
@@ -300,7 +301,7 @@ ALTER TABLE `cattery_images`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `customer_pets`
@@ -324,13 +325,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `venues`
 --
 ALTER TABLE `venues`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
