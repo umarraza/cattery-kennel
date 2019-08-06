@@ -55,6 +55,7 @@ class CustomerController extends Controller
 
             try {
 
+                // signup a user if customer decided to register himself
                 if ($request->get('isRegistered') == 1) {
 
                     $password = $request->get('password');
@@ -92,33 +93,42 @@ class CustomerController extends Controller
     
                     ]);
     
+                    $dateCheckIn = $request->get('checkIn');
+                    $breakData1 = explode(' ', $dateCheckIn);
+                    $checkIn = $breakData1[0];
 
-                    /*
+                    $dateCheckOut = $request->get('checkOut');
+                    $breakData2 = explode(' ', $dateCheckOut);
+                    $checkOut = $breakData2[0];
 
-                        CHECKING THE AVAILIBILITY OF CATTERY PLACE IN REQUIRED DATE.
 
-                        To get occupied rooms for the period specified, i.e '2016-02-27'-'2016-02-24', you can use:
-
-                        SELECT DISTINCT room_no
-                        FROM reservation
-                        WHERE check_in <= '2016-02-27' AND check_out >= '2016-02-24'
-                        Output:
-
-                        room_no
-                        =======
-                        13
-                        14
-                        
+                    /** 
+                     *  Note:
+                     *  
+                     *  serachCheckIn & searchCheckOut fields are just for venue seraching purpose when a 
+                     *  customer enter dates while registering a new booking. 
+                     *  
+                     *  Searching was not possible on complete timestamp date format i.e (2019-07-03 00:00:00) 
+                     *  because this timestamp format includes hours, minutes & seconds as well. We need just 
+                     *  date witout time to perform search for venues. This is the reason to create 2 additional
+                     *  dates i.e 'searchCheckIn' & 'searchCheckOut' in a simple string in order to perform 
+                     *  searches easily. I there is a consize way of searching other then this, you can 
+                     *  implement that.
+                     * 
                     */
+
+
 
                     $booking = Booking::create([
     
                         'venueId'       =>  $request->get('venueId'),
-                        'customerId'    =>  $customer->id,  // customer id will define the number of repeat bookers
+                        'customerId'    =>  $customer->id, 
                         'noOfCats'      =>  $request->get('noOfCats'),
                         'noOfDogs'      =>  $request->get('noOfDogs'),
                         'checkIn'       =>  $request->get('checkIn'),
                         'checkOut'      =>  $request->get('checkOut'),
+                        "searchCheckIn" =>  $checkIn,
+                        "searchCheckOut"=>  $checkOut,
                         'isActive'      =>  1, 
                         'isRegistered'  =>  $request->get('isRegistered'), 
     
@@ -127,31 +137,41 @@ class CustomerController extends Controller
                     $venue = Venue::whereId($request->venueId)->first();
                     $user = User::find($venue->userId);
                     $venueMail = $user->email;
+
+                    // decrement of no of cats and dogs of a venue with new booking's cats and dogs value
+
                     $venue->totalCats -= $request->noOfCats;
                     $venue->totalDogs -= $request->noOfDogs;
-
                     $venue->save();
 
+                    // disable venue status if there is no place for new bookings. 
+                    // Also keep minimum value of venue cats and dogs to '0' in order to avoid negative integer for values
                     if($venue->totalCats <= 0 && $venue->totalDogs <= 0) {
 
                         $venue = Venue::whereId($request->venueId)->update([
                             'isAvailable' => 0,
+                            'totalCats' => 0,
+                            'totalDogs' => 0,
                         ]);
-
                     }
+                    
+                    // mail to customer for confirmation by platform
                     $customerMail = $request->get('email');
                     $customerMessage = "Hi! Customer";
 
-                    \Mail::send('Mails.customer', ["message" => $customerMessage], function ($customerMessage) use ($customerMail)
+                    \Mail::send('Mails.customer', ["message" => $customerMessage, "booking"=>$booking,"customer"=>$customer], function ($customerMessage) use ($customerMail)
                     {
                         $customerMessage->from('info@cattery&kennel.online', 'Catteries & Kennels');
                         $customerMessage->to($customerMail);
                         $customerMessage->subject("New Email From Your site");
+
                     });
 
+                    $venue = Venue::whereId($request->venueId)->first();
                     $venueMessage = "Hi! Venue";
-
-                    \Mail::send('Mails.venue', ["message" => $venueMessage], function ($venueMessage) use ($venueMail)
+                    
+                    // mail to a venue about notifying for a new booking
+                    \Mail::send('Mails.venue', ["message" => $venueMessage,"booking"=>$booking,"customer"=>$customer,"venue"=>$venue], function ($venueMessage) use ($venueMail)
                     {
                         $venueMessage->from('info@cattery&kennel.online', 'Catteries & Kennels');
                         $venueMessage->to($venueMail);
@@ -166,6 +186,7 @@ class CustomerController extends Controller
                     $response['data']['message']  =  'New booking created successfully';
 
                 } else {
+
                     $customer = Customer::create([
 
                         'bookerName'    =>  $request->get('bookerName'),
@@ -392,4 +413,136 @@ class CustomerController extends Controller
         return $response;
     }
 
+    public function updateCustomer1(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $response = [
+                'data' => [
+                    'code'      =>  400,
+                    'errors'    =>  '',
+                    'message'   =>  'Invalid Token! User Not Found.',
+                ],
+                'status' => false
+            ];
+
+        if(!empty($user) && $user->isCustomer())
+        {
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+               'status' => false
+            ];
+            
+            $rules = [
+ 
+                'bookerName'    =>   'required',
+                'address'       =>   'required',   
+                'phoneNumber'   =>   'required',
+                'id'   =>   'required',
+
+            ];
+            if ($validator->fails()) {
+            
+                $response['data']['message'] = 'Invalid input values.';
+                $response['data']['errors'] = $validator->messages();
+    
+            }
+            else {
+                try {
+
+                    $customers = Customer::whereId($request->id)->update([
+
+                        "bookerName" => $request->get('bookerName'),
+                        "address" => $request->get('address'),
+                        "phoneNumber" => $request->get('phoneNumber'),
+
+                    ]);
+    
+                    if ($customers) {
+    
+                        $response['data']['code']       =  200;
+                        $response['data']['message']    =  'Customer Updated Successfully';
+                        $response['data']['result']     =  $customers;
+                        $response['status']             =  true;
+                    }
+    
+                } catch (Exception $e) {
+    
+                    throw $e;
+                }
+            }
+        }
+        return $response;
+    }
+    public function updateCustomer(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $response = [
+                'data' => [
+                    'code'      => 400,
+                    'errors'    => '',
+                    'message'   => 'Invalid Token! User Not Found.',
+                ],
+                'status' => false
+            ];
+
+        if(!empty($user))
+        {
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+               'status' => false
+            ];
+            
+            $rules = [
+
+                'bookerName' => 'required',
+                'address' => 'required',
+            	'phoneNumber' => 'required',
+            	'id' => 'required',
+                
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                
+                $response['data']['message'] = 'Invalid input values.';
+                $response['data']['errors'] = $validator->messages();
+
+            } else {
+
+                DB::beginTransaction();
+                try {
+                 
+                    $customer = Customer::find($request->id)->update([
+                    
+                        'bookerName' => $request->get('bookerName'),
+                        'address' => $request->get('address'),
+                        'phoneNumber' => $request->get('phoneNumber'),
+    
+                    ]);
+
+                    if ($customer) {
+
+                        DB::commit();
+                        $response['data']['code']       =  200;
+                        $response['data']['message']    =  'Customer updated SuccessfullY';
+                        $response['status']             =  true;
+    
+                    }
+
+                } catch (Exception $e) {
+
+                    DB::rollBack();
+                    throw $e;
+                }
+            }
+        }
+        return $response;
+    }
 }

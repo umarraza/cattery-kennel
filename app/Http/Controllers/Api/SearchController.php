@@ -49,27 +49,24 @@ class SearchController extends Controller
 
                 if (isset($postcode)) {
 
-                    $bookings = Booking::whereCheckin($checkIn)
-                        ->whereCheckout($checkOut)
-                        ->whereIsactive(1)
-                    ->get();
-
+                    $bookings = Booking::where('searchCheckIn','like','%' .$checkIn)
+                    ->where('searchCheckOut','like','%' .$checkOut)
+                    ->whereIsactive(1)
+                        ->get();
                     $venueIds = $bookings->pluck('venueId');
 
                     $venues = Venue::whereIn('id', $venueIds)
-                        ->whereIsavailable(1)
+                        ->whereIsavailable(1) //checl if venue available for bookings
                         ->wherePostcode($postcode)
                         ->orderBy('serviceRate', 'asc')
                         ->get();
-                    
-                    $listVenues = [];
+
+                        $listVenues = [];
 
                     foreach ($venues as $venue) {
 
-                        $totalCats = $venue->totalCats;
-                        $totalDogs = $venue->totalDogs;
-
-                        if ($totalCats > $noOfCats && $totalDogs > $noOfDogs) {
+                        // check if venue has no of cats and dogs greater then customer's requirements
+                        if ($venue->totalCats >= $noOfCats && $venue->totalDogs >= $noOfDogs) {
                             $listVenues[] = $venue;
                         }
                         
@@ -83,10 +80,10 @@ class SearchController extends Controller
 
                 } else {
 
-                    $bookings = Booking::whereCheckin($checkIn)
-                        ->whereCheckout($checkOut)
-                        ->whereIsactive(1)
-                    ->get();
+                    $bookings = Booking::where('checkIn', 'like', '%' .$checkIn)
+                    ->where('checkOut','like','%' .$checkOut)
+                    ->whereIsactive(1)
+                        ->get();
 
                     $venueIds = $bookings->pluck('venueId');
 
@@ -103,7 +100,7 @@ class SearchController extends Controller
                     $totalCats = $venue->totalCats;
                     $totalDogs = $venue->totalDogs;
 
-                    if ($totalCats > $noOfCats && $totalDogs > $noOfDogs) {
+                    if ($totalCats >= $noOfCats && $totalDogs >= $noOfDogs) {
 
                         $listVenues[] = $venue;
                         $venue = $venue->images;

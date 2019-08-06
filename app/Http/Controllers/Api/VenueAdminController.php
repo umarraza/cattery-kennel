@@ -79,7 +79,7 @@ class VenueAdminController extends Controller
                     ]);
 
                     $user = User::whereId($request->get('userId'))->first();
-
+                    
                     if($venue->isPaid == 1) {
                         
                         $buisnessName = $request->get('buisnessName');
@@ -178,6 +178,93 @@ class VenueAdminController extends Controller
 
                 throw $e;
             }
+        return $response;
+    }
+
+    public function updateVenue(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $response = [
+                'data' => [
+                    'code'      => 400,
+                    'errors'    => '',
+                    'message'   => 'Invalid Token! User Not Found.',
+                ],
+                'status' => false
+            ];
+
+        if(!empty($user))
+        {
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+               'status' => false
+            ];
+            
+            $rules = [
+
+                'id' => 'required',
+                'buisnessName' => 'required',
+                'address' => 'required',
+            	'postcode' => 'required',
+                'phoneNumber' => 'required',
+            	'buisnessDescription' => 'required',
+            	'discountDescription' => 'required',
+            	'facilities' => 'required',
+            	'serviceRate' => 'required',
+                'discountAvailable' => 'required',
+            	'totalCats' => 'required',
+            	'totalDogs' => 'required'
+                
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                
+                $response['data']['message'] = 'Invalid input values.';
+                $response['data']['errors'] = $validator->messages();
+
+            } else {
+
+                DB::beginTransaction();
+                try {
+                 
+                    $venue = Venue::find($request->id)->update([
+                    
+                        'buisnessName' => $request->get('buisnessName'),
+                        'address' => $request->get('address'),
+                        'phoneNumber' => $request->get('phoneNumber'),
+                        'postcode' => $request->get('postcode'),
+                        'phoneNumber' => $request->get('phoneNumber'),
+                        'buisnessDescription' => $request->get('buisnessDescription'),
+                        'discountDescription' => $request->get('discountDescription'),
+                        'facilities' => $request->get('facilities'),
+                        'serviceRate' => $request->get('serviceRate'),
+                        'discountAvailable' => $request->get('discountAvailable'),
+                        'totalCats' => $request->get('totalCats'),
+                        'totalDogs' => $request->get('totalDogs'),
+                        'type' => $request->get('type'),
+                    ]);
+
+                    if ($venue) {
+
+                        DB::commit();
+                        $response['data']['code']       =  200;
+                        $response['data']['message']    =  'venue updated SuccessfullY';
+                        $response['status']             =  true;
+    
+                    }
+
+                } catch (Exception $e) {
+
+                    DB::rollBack();
+                    throw $e;
+                }
+            }
+        }
         return $response;
     }
 }

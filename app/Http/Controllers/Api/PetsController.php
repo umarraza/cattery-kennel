@@ -20,6 +20,7 @@ class PetsController extends Controller
 {
     public function newPet(Request $request)
     {
+
         $response = [
             'data' => [
                 'code' => 400,

@@ -24,12 +24,18 @@ Route::post('/reset-password', 'Api\AuthController@changePassword');
 Route::post('/create-venue', 'Api\VenueAdminController@createVenue');
 Route::post('/list-new-bookings', 'Api\VenueAdminController@listNewBooking');
 Route::post('/venue-details', 'Api\VenueAdminController@venueDetails');
+Route::post('/update-venue', 'Api\VenueAdminController@updateVenue');
 
 // Images Routes
 Route::post('/create-cattery-image', 'Api\CatteryImagesController@createImages');
+Route::post('/venue-images', 'Api\CatteryImagesController@venueImages');
+Route::post('/delete-venue-image', 'Api\CatteryImagesController@deleteVenueImage');
+
 
 // Custmer Routes
 Route::post('/list-customer-bookings', 'Api\CustomerController@customerBookings');
+Route::post('/update-customer', 'Api\CustomerController@updateCustomer');
+
 Route::get('/list-customers', 'Api\CustomerController@listCustomers');
 Route::post('/new-customer', 'Api\CustomerController@newCustomer');
 Route::post('/new-pet', 'Api\PetsController@newPet');
@@ -39,7 +45,7 @@ Route::post('/past-customer-bookings', 'Api\CustomerController@customerBookingsH
 // Booking Routes
 Route::post('/new-bookings', 'Api\BookingsController@newVenueBookings');
 Route::get('/update-bookings-status', 'Api\BookingsController@updateBookings');
-Route::post('/customer-new-booking', 'Api\BookingsController@registeredBooking');
+Route::post('/customer-new-booking', 'Api\BookingsController@registeredCustomerBooking');
 Route::post('/active-bookings', 'Api\BookingsController@activeBookings');
 Route::post('/old-bookings', 'Api\BookingsController@oldBookings');
 Route::post('/old-bookings', 'Api\BookingsController@oldBookings');

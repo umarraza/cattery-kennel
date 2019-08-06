@@ -105,4 +105,83 @@ class CatteryImagesController extends Controller
         }    
         return $response;
     }
+
+    public function venueImages(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $response = [
+                'data' => [
+                    'code'      =>  400,
+                    'errors'    =>  '',
+                    'message'   =>  'Invalid Token! User Not Found.',
+                ],
+                'status' => false
+            ];
+
+        if(!empty($user) && $user->isVenue())
+        {
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+               'status' => false
+            ];
+            
+            try {
+
+                $venueImages = CatteryImages::whereVenueid($request->id)->get();
+
+                $response['data']['code']     =  200;
+                $response['data']['message']  =  'Request Successfull';
+                $response['data']['result']   =  $venueImages;
+                $response['status']           =  true;
+
+            } catch (Exception $e) {
+
+                throw $e;
+            }
+        }
+        return $response;
+    }
+
+    public function deleteVenueImage(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $response = [
+                'data' => [
+                    'code'      =>  400,
+                    'errors'    =>  '',
+                    'message'   =>  'Invalid Token! User Not Found.',
+                ],
+                'status' => false
+            ];
+
+        if(!empty($user) && $user->isVenue())
+        {
+            $response = [
+                'data' => [
+                    'code' => 400,
+                    'message' => 'Something went wrong. Please try again later!',
+                ],
+               'status' => false
+            ];
+            
+            try {
+
+                $image = CatteryImages::whereId($request->id)->delete();
+
+                $response['data']['code']     =  200;
+                $response['data']['message']  =  'Image deleted successfuly';
+                $response['status']           =  true;
+
+            } catch (Exception $e) {
+
+                throw $e;
+            }
+        }
+        return $response;
+    }
+
+
 }

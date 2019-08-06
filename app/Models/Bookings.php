@@ -20,6 +20,7 @@ class Bookings extends Model
      *
      * @var array
      */
+    
     protected $fillable = [
 
         'venueId',
@@ -28,6 +29,8 @@ class Bookings extends Model
         'noOfDogs',
         'checkIn',
         'checkOut',
+        'searchCheckIn',
+        'searchCheckOut',
         'isActive',
         'isRegistered',
         'userId'
@@ -46,16 +49,18 @@ class Bookings extends Model
     public function getArrayResponse() {
         return [
 
-            'id'  	        =>   $this->id,
-            'venueId'       =>   $this->venueId,
-            'customerId'    =>   $this->customerId,
-            'noOfCats'      =>   $this->noOfCats,
-            'noOfDogs'      =>   $this->noOfDogs,
-            'checkIn'       =>   $this->checkIn,
-            'checkOut'      =>   $this->checkOut,
-            'isActive'      =>   $this->isActive,
-            'isRegistered'  =>   $this->isRegistered,
-            'userId'        =>   $this->userId,
+            'id'  	         =>   $this->id,
+            'venueId'        =>   $this->venueId,
+            'customerId'     =>   $this->customerId,
+            'noOfCats'       =>   $this->noOfCats,
+            'noOfDogs'       =>   $this->noOfDogs,
+            'checkIn'        =>   $this->checkIn,
+            'checkOut'       =>   $this->checkOut,
+            'searchCheckIn'   =>   $this->searchCheckIn,
+            'searchCheckOut' =>   $this->searchCheckOut,
+            'isActive'       =>   $this->isActive,
+            'isRegistered'   =>   $this->isRegistered,
+            'userId'         =>   $this->userId,
 
         ];
     }

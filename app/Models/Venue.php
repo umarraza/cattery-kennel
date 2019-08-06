@@ -50,7 +50,7 @@ class Venue extends Model
 
     public function images()
     {
-        return $this->hasMany(CatteryImages::class, 'venueId')->where('isProfile', 1);
+        return $this->hasMany(CatteryImages::class, 'venueId');
     }
 
     public function getArrayResponse() {

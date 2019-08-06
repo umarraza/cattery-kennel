@@ -72,7 +72,7 @@ class AuthController extends Controller
             {
                 if ($user->venue !== NULL) {
 
-                    $images = CatteryImages::whereId($user->venue->id)->first();
+                    $images = CatteryImages::whereVenueid($user->venue->id)->first();
 
                     $response['data']['code']                    =  200;
                     $response['data']['message']                 =  "Request Successfull!!";
